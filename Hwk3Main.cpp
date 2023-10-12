@@ -22,12 +22,12 @@ void DriverMenu(){
     cout << "q - Quit Driver Menu" << endl;
 }
 
-void ExecuteDriverMenu(char driveroption){
+void ExecuteDriverMenu(Drivers driver, char driveroption){
 
     switch(driveroption){
         case 'a':
             cout << "add" << endl;
-            input.addDriver();
+            driver.addDriver();
             break;
         case 'q':
             break;
@@ -37,7 +37,7 @@ void ExecuteDriverMenu(char driveroption){
     }
 }
 
-void ExecuteMenu(char option){
+void ExecuteMenu(Drivers driver, char option){
 
     char driveroption;
 
@@ -47,7 +47,7 @@ void ExecuteMenu(char option){
             DriverMenu();
             cin >> driveroption;
                 if(driveroption != 'q'){
-                    ExecuteDriverMenu(driveroption);
+                    ExecuteDriverMenu(driver, driveroption);
                 }
 
             }while(driveroption != 'q');
@@ -80,13 +80,15 @@ int main()
     cout << "-----------------------------------------" << endl;
 
     char option;
+    Drivers driver;
+    vector<Driver> driverVector;
 
     do{
     PrintMenu();
     cin >> option;
 
         if(option != 'q'){
-        ExecuteMenu(option);
+        ExecuteMenu(driver, option);
         }
 
     }while(option != 'q');
