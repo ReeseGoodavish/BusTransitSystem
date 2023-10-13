@@ -16,6 +16,9 @@ class Driver{
         void setCapacity(int Capacity);
         int getCapacity();
 
+        void setHandicapped(bool Handicapped);
+        bool getHandicapped();
+
     private:
         int ID;
         string FirstName;

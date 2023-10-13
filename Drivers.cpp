@@ -25,6 +25,13 @@ int Driver::getCapacity(){
     return Capacity;
 }
 
+void Driver::setHandicapped(bool Handicapped){
+    this->Handicapped = Handicapped;
+}
+bool Driver::getHandicapped(){
+    return Handicapped;
+}
+
 void Drivers::addDriver(){
     Driver newDriver;
 
@@ -48,8 +55,32 @@ void Drivers::addDriver(){
     newDriver.setCapacity(Capacity);
     cout << newDriver.getCapacity() << endl;
 
-    
+    bool Handicapped;
+    bool HandicappedLoopError = true;
+    string inputHandicapped;
 
+    do{
+    cout << "Enter New Driver Handicapped Status 'Yes' or 'No' (without quotes) " << endl;
+    cin >> inputHandicapped;
+
+    if(inputHandicapped == "Yes" || inputHandicapped == "yes"){
+        Handicapped = true;
+        HandicappedLoopError = false;
+    }
+    else if(inputHandicapped == "No" || inputHandicapped == "no"){
+        Handicapped = false;
+        HandicappedLoopError = false;
+    }
+    else{
+        cout << "Error Please Enter Again" << endl;
+        HandicappedLoopError = true;
+    }
+    }while(HandicappedLoopError == true);
+    cout << endl;
+    newDriver.setHandicapped(Handicapped);
+
+    // Handicapped Status Works 1 = Hanicapped (True) And 0 = Not Handicapped (False)
+    // cout << "HandicappedStatus = " << newDriver.getHandicapped() << endl;
 
 }
 
