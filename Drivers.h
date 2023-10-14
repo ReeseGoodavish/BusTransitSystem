@@ -28,6 +28,12 @@ class Driver{
         void setAvailable(bool Available);
         bool getAvailable();
 
+        void setPetsAllowed(bool PetsAllowed);
+        bool getPetsAllowed();
+
+        void setNotes(string Notes);
+        string getNotes();
+
 
 
     private:
@@ -49,6 +55,7 @@ class Drivers{
 
     private:
     int count;
+    vector<Driver*> DriverList;
 
 };
 
