@@ -7,6 +7,10 @@ using namespace std;
 
 class Driver{
     public:
+        void setID(int ID);
+
+        int getID();
+
         void setFirstName(string FirstName);
         string getFirstName();
 
@@ -51,12 +55,14 @@ class Driver{
 
 class Drivers{
     public:
-    void addDriver();
-    void printAllDrivers();
+        Drivers();
+
+        void addDriver();
+        void printAllDrivers();
 
     private:
-    int count;
-    vector<Driver*> DriverList;
+        int count;
+        vector<Driver*> DriverList;
 
 };
 

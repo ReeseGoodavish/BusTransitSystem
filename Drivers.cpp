@@ -4,6 +4,17 @@ using namespace std;
 
 #include "Drivers.h"
 
+void Driver::setID(int ID){
+    this->ID = ID;
+}
+int Driver::getID(){
+    return ID;
+}
+
+Drivers::Drivers(){
+    count = 100000;
+}
+
 void Driver::setFirstName(string FirstName){
     this->FirstName = FirstName;
 }
@@ -68,7 +79,12 @@ string Driver::getNotes(){
 }
 
 void Drivers::addDriver(){
-    Driver* newDriver = new Driver;
+    Driver* newDriver = new Driver();
+
+    static int ID = 100000;
+    newDriver->setID(ID);
+    cout << "New Driver ID Set To: " << newDriver->getID() << endl;
+    ++ID;
 
     string FirstName;
     cout << "Enter New Driver First Name" << endl;
@@ -223,6 +239,7 @@ void Drivers::addDriver(){
     DriverList.push_back(newDriver); //pushes all info for new driver into vector
 
     //Print All Info For New Drievr
+    cout << "New Driver ID: " << newDriver->getID() << endl;
     cout << "New Driver Info: " << endl;
     cout << "First Name: " << newDriver->getFirstName() << endl;
     cout << "Last Name: " << newDriver->getLastName() << endl;
@@ -230,10 +247,10 @@ void Drivers::addDriver(){
 
     // If-Else Block (better than displaying 0 or 1)
     if(newDriver->getHandicapped() == 1){
-        cout << "Handicapped Status: Driver is Handicap Capiable" << endl;
+        cout << "Handicap Capable: Driver is Handicap Capiable" << endl;
     }
     else if(newDriver->getHandicapped() == 0){
-        cout << "Handicapped Status: Driver is not Handicap Capiable" << endl;
+        cout << "Handicap Capable: Driver is not Handicap Capiable" << endl;
     }
 
     cout << "Vehicle Type: " << newDriver->getVehicleType() << endl;
@@ -280,11 +297,39 @@ void Drivers::printAllDrivers(){
     for(int i = 0; i < DriverList.size(); ++i){
         cout << "ALL DRIVER INFO" << endl;
         cout << "Info For Driver " << i + 1  << ": " << endl;
+        cout << "Driver ID: " << DriverList[i]->getID() << endl;
         cout << "First Name: " << DriverList[i]->getFirstName() << endl;
         cout << "Last Name: " << DriverList[i]->getLastName() << endl;
         cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
+
+        if(DriverList[i]->getHandicapped() == 1){
+            cout << "Handicap Capable: Driver is Handicap Capable" << endl;
+        }
+        else if(DriverList[i]->getHandicapped() == 0){
+            cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
+        }
+
+        cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
+        cout << "Rating: " << DriverList[i]->getRating() << endl;
+
+        if(DriverList[i]->getAvailable() == 1){
+            cout << "Available: Driver is Available" << endl;
+        }
+        else if(DriverList[i]->getAvailable() == 0){
+            cout << "Available: Driver is not Available" << endl;
+        }
+
+        if(DriverList[i]->getPetsAllowed() == 1){
+            cout << "Pets Allowed: Driver allows Pets" << endl;
+        }
+        else if(DriverList[i]->getPetsAllowed() == 0){
+            cout << "Pets Allowed: Driver does not allow Pets" << endl;
+        }
+
+        cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
     }
     }
+
 }
 
 
