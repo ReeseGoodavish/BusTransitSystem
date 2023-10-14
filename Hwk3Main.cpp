@@ -19,15 +19,20 @@ void PrintMenu(){
 void DriverMenu(){
     cout << "PICK AN OPTION" << endl;
     cout << "a - Add Driver" << endl;
+    cout << "p - Print All Drivers" << endl;
     cout << "q - Quit Driver Menu" << endl;
 }
 
-void ExecuteDriverMenu(Drivers driver, char driveroption){
+void ExecuteDriverMenu(Drivers& driver, char driveroption){
 
     switch(driveroption){
         case 'a':
             cout << "add" << endl;
             driver.addDriver();
+            break;
+        case 'p':
+            cout << "Print All Drivers" << endl;
+            driver.printAllDrivers();
             break;
         case 'q':
             break;
@@ -37,7 +42,7 @@ void ExecuteDriverMenu(Drivers driver, char driveroption){
     }
 }
 
-void ExecuteMenu(Drivers driver, char option){
+void ExecuteMenu(Drivers& driver, char option){
 
     char driveroption;
 
@@ -81,7 +86,6 @@ int main()
 
     char option;
     Drivers driver;
-    vector<Driver> driverVector;
 
     do{
     PrintMenu();
