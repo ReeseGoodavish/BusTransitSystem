@@ -19,6 +19,17 @@ class Driver{
         void setHandicapped(bool Handicapped);
         bool getHandicapped();
 
+        void setVehicleType(string VehicleType);
+        string getVehicleType();
+
+        void setRating(float Rating);
+        float getRating();
+
+        void setAvailable(bool Available);
+        bool getAvailable();
+
+
+
     private:
         int ID;
         string FirstName;
