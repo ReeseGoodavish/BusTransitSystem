@@ -19,6 +19,7 @@ void PrintMenu(){
 void DriverMenu(){
     cout << "PICK AN OPTION" << endl;
     cout << "a - Add Driver" << endl;
+    cout << "e - Edit Driver" << endl;
     cout << "p - Print All Drivers" << endl;
     cout << "q - Quit Driver Menu" << endl;
 }
@@ -29,6 +30,10 @@ void ExecuteDriverMenu(Drivers& driver, char driveroption){
         case 'a':
             cout << "add" << endl;
             driver.addDriver();
+            break;
+        case 'e':
+            cout << "Edit" << endl;
+            driver.editDrivers();
             break;
         case 'p':
             cout << "Print All Drivers" << endl;

@@ -288,46 +288,167 @@ void Drivers::addDriver(){
 
 }
 
+// EDIT DRIVER FUNCTION
+void Drivers::editDrivers(){
+    int EditDriverID;
+    bool DriverIDError; // set to true
+    
+    if(DriverList.empty()){
+        cout << "DRIVER LIST IS EMPTY" << endl;
+    }
+    else{
+
+        cout << "ENTER ID OF DRIVER TO EDIT" << endl;
+        cin >> EditDriverID;
+    
+        for(int i=0; i < DriverList.size(); ++i){
+            if(EditDriverID == DriverList[i]->getID()){
+                cout << "DRIVER FOUND" << endl;
+                cout << "INFO FOR DRIVER" << endl;
+                cout << "Driver ID: " << DriverList[i]->getID() << endl;
+                cout << "First Name: " << DriverList[i]->getFirstName() << endl;
+                cout << "Last Name: " << DriverList[i]->getLastName() << endl;
+                cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
+                if(DriverList[i]->getHandicapped() == 1){
+                    cout << "Handicap Capable: Driver is Handicap Capable" << endl;
+                }
+                else if(DriverList[i]->getHandicapped() == 0){
+                    cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
+                }
+
+                cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
+                cout << "Rating: " << DriverList[i]->getRating() << endl;
+
+                if(DriverList[i]->getAvailable() == 1){
+                    cout << "Available: Driver is Available" << endl;
+                }
+                else if(DriverList[i]->getAvailable() == 0){
+                    cout << "Available: Driver is not Available" << endl;
+                }
+
+                if(DriverList[i]->getPetsAllowed() == 1){
+                    cout << "Pets Allowed: Driver allows Pets" << endl;
+                }
+                else if(DriverList[i]->getPetsAllowed() == 0){
+                    cout << "Pets Allowed: Driver does not allow Pets" << endl;
+                }
+
+                cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
+
+                cout << "EDIT MENU: " << endl;
+                cout << "1 - ID" << endl;
+                cout << "2 - First Name" << endl;
+                cout << "3 - Last Name" << endl;
+                cout << "4 - Capacity" << endl;
+                cout << "5 - Handicap Capibility Status" << endl;
+                cout << "6 - Vehichle Type" << endl;
+                cout << "7 - Rating" << endl;
+                cout << "8 - Avaibility" << endl;
+                cout << "9 - Pets Allowed Status" << endl;
+                cout << "10 - Notes" << endl;
+                cout << "What Info Would You Like To Edit: " << endl;
+
+                int EditChoice;
+                cin >> EditChoice;
+
+                switch(EditChoice){
+                    case 1:
+                        string newID;
+                        bool newIDLoopError;
+                        do{
+                            cout << "Enter ID of 6 digits" << endl;
+                            cin >> newID;
+                            newIDLoopError = false;
+
+                            if(newID.size() != 6){
+                                cout << "ID must be 6 digits Long" << endl;
+                                newIDLoopError = true;
+                            }
+                            else if(newID[0] == '0'){
+                                cout << "First Digit cant be a zero " << endl;
+                                newIDLoopError = true;
+                            }
+                            else{
+                                for(char c: newID){
+                                    if(!isdigit(c)){
+                                        cout << "ID must be only integers" << endl;
+                                        newIDLoopError = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                        }while(newIDLoopError);
+
+                        int EditnewID = stoi(newID);
+                        
+                        for(int i = 0; i < DriverList.size(); ++i){
+                            if(DriverList[i]->getID() == EditDriverID){
+                                DriverList[i]->setID(EditnewID);
+                            }
+                            cout << DriverList[i]->getID() << endl;
+                            break;
+                        }
+
+
+                        break;
+
+                }
+
+
+                DriverIDError = false;
+                break;
+            }
+        }
+        if(DriverIDError == true){
+            cout << "DRIVER WAS NOT FOUND" << endl;
+        }
+    }
+
+    
+}
+
+//PRINT ALL DRIVERS
 void Drivers::printAllDrivers(){
 
     if(DriverList.empty()){
         cout << "DRIVER LIST IS EMPTY" << endl;
     }
     else{
-    for(int i = 0; i < DriverList.size(); ++i){
-        cout << "ALL DRIVER INFO" << endl;
-        cout << "Info For Driver " << i + 1  << ": " << endl;
-        cout << "Driver ID: " << DriverList[i]->getID() << endl;
-        cout << "First Name: " << DriverList[i]->getFirstName() << endl;
-        cout << "Last Name: " << DriverList[i]->getLastName() << endl;
-        cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
+        for(int i = 0; i < DriverList.size(); ++i){
+            cout << "ALL DRIVER INFO" << endl;
+            cout << "Info For Driver " << i + 1  << ": " << endl;
+            cout << "Driver ID: " << DriverList[i]->getID() << endl;
+            cout << "First Name: " << DriverList[i]->getFirstName() << endl;
+            cout << "Last Name: " << DriverList[i]->getLastName() << endl;
+            cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
 
-        if(DriverList[i]->getHandicapped() == 1){
-            cout << "Handicap Capable: Driver is Handicap Capable" << endl;
-        }
-        else if(DriverList[i]->getHandicapped() == 0){
-            cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
-        }
+            if(DriverList[i]->getHandicapped() == 1){
+                cout << "Handicap Capable: Driver is Handicap Capable" << endl;
+            }
+            else if(DriverList[i]->getHandicapped() == 0){
+                cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
+            }
 
-        cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
-        cout << "Rating: " << DriverList[i]->getRating() << endl;
+            cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
+            cout << "Rating: " << DriverList[i]->getRating() << endl;
 
-        if(DriverList[i]->getAvailable() == 1){
-            cout << "Available: Driver is Available" << endl;
-        }
-        else if(DriverList[i]->getAvailable() == 0){
-            cout << "Available: Driver is not Available" << endl;
-        }
+            if(DriverList[i]->getAvailable() == 1){
+                cout << "Available: Driver is Available" << endl;
+            }
+            else if(DriverList[i]->getAvailable() == 0){
+                cout << "Available: Driver is not Available" << endl;
+            }
 
-        if(DriverList[i]->getPetsAllowed() == 1){
-            cout << "Pets Allowed: Driver allows Pets" << endl;
-        }
-        else if(DriverList[i]->getPetsAllowed() == 0){
-            cout << "Pets Allowed: Driver does not allow Pets" << endl;
-        }
+            if(DriverList[i]->getPetsAllowed() == 1){
+                cout << "Pets Allowed: Driver allows Pets" << endl;
+            }
+            else if(DriverList[i]->getPetsAllowed() == 0){
+                cout << "Pets Allowed: Driver does not allow Pets" << endl;
+            }
 
-        cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
-    }
+            cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
+        }
     }
 
 }
