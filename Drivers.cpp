@@ -288,16 +288,33 @@ void Drivers::addDriver(){
 
 }
 
+void editDriversMenu(){
+
+    cout << "EDIT MENU: " << endl;
+    cout << "1 - ID" << endl;
+    cout << "2 - First Name" << endl;
+    cout << "3 - Last Name" << endl;
+    cout << "4 - Capacity" << endl;
+    cout << "5 - Handicap Capibility Status" << endl;
+    cout << "6 - Vehichle Type" << endl;
+    cout << "7 - Rating" << endl;
+    cout << "8 - Avaibility" << endl;
+    cout << "9 - Pets Allowed Status" << endl;
+    cout << "10 - Notes" << endl;
+    cout << "What Info Would You Like To Edit: " << endl;
+    
+}
+
 // EDIT DRIVER FUNCTION
 void Drivers::editDrivers(){
     int EditDriverID;
     bool DriverIDError; // set to true
-    
+
     if(DriverList.empty()){
         cout << "DRIVER LIST IS EMPTY" << endl;
     }
     else{
-
+        do{
         cout << "ENTER ID OF DRIVER TO EDIT" << endl;
         cin >> EditDriverID;
     
@@ -334,23 +351,13 @@ void Drivers::editDrivers(){
                 }
 
                 cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
+                }
+                
 
-                cout << "EDIT MENU: " << endl;
-                cout << "1 - ID" << endl;
-                cout << "2 - First Name" << endl;
-                cout << "3 - Last Name" << endl;
-                cout << "4 - Capacity" << endl;
-                cout << "5 - Handicap Capibility Status" << endl;
-                cout << "6 - Vehichle Type" << endl;
-                cout << "7 - Rating" << endl;
-                cout << "8 - Avaibility" << endl;
-                cout << "9 - Pets Allowed Status" << endl;
-                cout << "10 - Notes" << endl;
-                cout << "What Info Would You Like To Edit: " << endl;
-
+                editDriversMenu();
                 int EditChoice;
                 cin >> EditChoice;
-
+                
                 switch(EditChoice){
                     case 1:
                         string newID;
@@ -377,35 +384,31 @@ void Drivers::editDrivers(){
                                     }
                                 }
                             }
+                            
+                            int EditnewID = stoi(newID);
+                            
+                            if(newIDLoopError == false){
+                                for(int i = 0; i < DriverList.size(); ++i){
+                                    if(DriverList[i]->getID() == EditnewID){
+                                        cout << "ERROR DRIVER ID EXISTS";
+                                        newIDLoopError = true;
+                                    }
+                                }
+                            }
+                            
 
                         }while(newIDLoopError);
-
-                        int EditnewID = stoi(newID);
-                        
-                        for(int i = 0; i < DriverList.size(); ++i){
-                            if(DriverList[i]->getID() == EditDriverID){
-                                DriverList[i]->setID(EditnewID);
-                            }
-                            cout << DriverList[i]->getID() << endl;
-                            break;
-                        }
-
-
                         break;
 
                 }
 
-
                 DriverIDError = false;
-                break;
             }
-        }
-        if(DriverIDError == true){
-            cout << "DRIVER WAS NOT FOUND" << endl;
-        }
+            if(DriverIDError == true){
+                cout << "DRIVER WAS NOT FOUND" << endl;
+            }
+        }while(DriverIDError = true);
     }
-
-    
 }
 
 //PRINT ALL DRIVERS
@@ -452,9 +455,3 @@ void Drivers::printAllDrivers(){
     }
 
 }
-
-
-
-
-
-
