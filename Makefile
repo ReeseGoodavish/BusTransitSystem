@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++11  # You can adjust the C++ standard as needed
+CXXFLAGS = -std=c++11
 
 SRCS = Drivers.cpp Hwk3Main.cpp
 OBJS = $(SRCS:.cpp=.o)

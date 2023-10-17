@@ -257,18 +257,18 @@ void Drivers::addDriver(){
     cout << "Rating: " << newDriver->getRating() << endl;
 
     // If-Else Block (better than displaying 0 or 1)
-    if(newDriver->getAvailable() == 1){
+    if(newDriver->getAvailable() == 0){
         cout << "Availability Status: Driver is not Available" << endl;
     }
-    else if(newDriver->getAvailable() == 0){
+    else if(newDriver->getAvailable() == 1){
         cout << "Availability Status: Driver is Available" << endl;
     }
 
     // If-Else Block (better than displaying 0 or 1)
-    if(newDriver->getPetsAllowed() == 1){
+    if(newDriver->getPetsAllowed() == 0){
         cout << "Pets Allowed: Driver does not allow Pets" << endl;
     }
-    else if(newDriver->getPetsAllowed() == 0){
+    else if(newDriver->getPetsAllowed() == 1){
         cout << "Pets Allowed: Driver does allow Pets" << endl;
     }
 
@@ -309,58 +309,312 @@ void editDriversMenu(){
 void Drivers::editDrivers(){
 
     int EditID;
-    int MenuChoice;
-    bool IDLoopError = true;
+    string newID;
+    bool DriverExists = false;
+
     do{
-    cout << "ENTER ID OF DRIVER TO EDIT" << endl;
-    cin >> EditID;
-
-    for(int i = 0; i < DriverList.size(); ++i){
-        if(DriverList[i]->getID() == EditID){
-            cout << "DRIVER FOUND" << endl;
-            // INFO FOR DRIVER
-            editDriversMenu();
-            cin >> MenuChoice;
-                if(MenuChoice == 1){
-                    string newID;
-                    bool newIDLoopError;
-                    do{
-                        cout << "Enter ID of 6 Digits " << endl;
-                        cin >> newID;
-                        
-                        if(newID.size() != 6){
-                            cout << "Error ID Must Be 6 Digits Long" << endl;
-                            newIDLoopError = false;
-                        }
-                        else if(newID[0] == 'o'){
-                            cout << "First Digit Can Not Be Zero" << endl;
-                            newIDLoopError = false;
-                        }
-                        if(newIDLoopError == true){
-                            for(char c: newID){
-                                if(!isdigit(c)){
-                                    cout << "ID Must Only Be Integers" << endl;
-                                    newIDLoopError = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                    }while(newIDLoopError == false);
-                }
-                else{
-                    cout << "NOT VALID CHOICE ENTER AGAIN" << endl;
-                    IDLoopError = true;
-                    break;
-                }
-            IDLoopError = false;
-            break;
+        if(DriverList.empty()){
+            cout << "DRIVER LIST IS EMPTY " << endl;
+            DriverExists = true;
         }
         else{
-            cout << "Driver Not Found" << endl;
+            do{
+                cout << "ENTER ID OF DRIVER TO EDIT" << endl; 
+                cin >> EditID;
+                for(int i = 0; i < DriverList.size(); ++i){
+                    if(DriverList[i]->getID() == EditID){
+                        cout << "DRIVER FOUND" << endl;
+                        cout << "INFO FOR DRIVER" << endl;
+                        cout << "Driver ID: " << DriverList[i]->getID() << endl;
+                        cout << "First Name: " << DriverList[i]->getFirstName() << endl;
+                        cout << "Last Name: " << DriverList[i]->getLastName() << endl;
+                        cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
+                        if(DriverList[i]->getHandicapped() == 1){
+                            cout << "Handicap Capable: Driver is Handicap Capable " << endl;
+                        }
+                        else if(DriverList[i]->getHandicapped() == 0){
+                        cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
+                        }
+
+                        cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
+                        cout << "Rating: " << DriverList[i]->getRating() << endl;
+
+                        if(DriverList[i]->getAvailable() == 1){
+                            cout << "Available: Driver is Available" << endl;
+                        }
+                        else if(DriverList[i]->getAvailable() == 0){
+                            cout << "Available: Driver is not Available" << endl;
+                        }
+
+                        if(DriverList[i]->getPetsAllowed() == 1){
+                            cout << "Pets Allowed: Driver allows Pets" << endl;
+                        }
+                        else if(DriverList[i]->getPetsAllowed() == 0){
+                            cout << "Pets Allowed: Driver does not allow Pets" << endl;
+                        }
+
+                        cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
+
+                        DriverExists = true;
+                        break;
+                    }
+                    else{
+                        cout << "DRIVER NOT FOUND" << endl;
+                        DriverExists = false;
+                    }
+                }
+            }while(DriverExists == false);
         }
-    }
-    }while(IDLoopError == true);
+    }while(DriverExists == false);
+
+
+    int EditChoice;
+    bool newIDLoopError = false;
+    do{
+        editDriversMenu();
+        cin >> EditChoice;
+        
+        if(EditChoice == 1){
+            do{
+            cout << "Enter ID of 6 Digits " << endl;
+            cin >> newID;
+            newIDLoopError = false;
+            
+            if(newID.size() != 6){
+                cout << "ID MUST BE 6 DIGITS LONG" << endl;
+                newIDLoopError = true;
+            }
+            else if(newID[0] == '0'){
+                cout << "FIRST DIGIT CANT EQUAL ZERO" << endl;
+                newIDLoopError = true;
+            }
+            else if(newIDLoopError == false){
+                for(char c: newID){
+                    if(!isdigit(c)){
+                        cout << "ID MUST BE ONLY INTEGERS" << endl;
+                        newIDLoopError = true;
+                        break;
+                    }
+                }
+            }
+
+            if(!newIDLoopError){
+                for(int i = 0; i < DriverList.size(); ++i){
+                    if(DriverList[i]->getID() == EditID){
+                        int EditnewID = stoi(newID);
+                        DriverList[i]->setID(EditnewID);
+                        cout << "DRIVER ID UPDATED" << endl;
+                    }
+                }
+                DriverExists = false;
+            }
+
+            }while(newIDLoopError == true);
+
+        }
+        else if(EditChoice == 2){
+            string editFirstName;
+            cout << "ENTER NEW FIRST NAME FOR DRIVER" << endl;
+            cin >> editFirstName;
+
+            for(int i = 0; i < DriverList.size(); ++i){
+                if(DriverList[i]->getID() == EditID){
+                    DriverList[i]->setFirstName(editFirstName);
+                    cout << "DRIVER FIRST NAME UPDATED" << endl;
+                }
+            }
+            DriverExists = false;
+        }
+        else if(EditChoice == 3){
+            string editLastName;
+            cout << "ENTER NEW LAST NAME FOR DRIVER" << endl;
+            cin >> editLastName;
+
+            for(int i = 0; i < DriverList.size(); ++i){
+                if(DriverList[i]->getID() == EditID){
+                    DriverList[i]->setLastName(editLastName);
+                    cout << "DRIVER LAST NAME UPDATED" << endl;
+                }
+            }
+            DriverExists = false;            
+        }
+        else if(EditChoice == 4){
+            int editCapacity;
+            cout << "ENTER NEW VEHICLE CAPACITY FOR DRIVER" << endl;
+            cin >> editCapacity;
+
+            for(int i = 0; i < DriverList.size(); ++i){
+                if(DriverList[i]->getID() == EditID){
+                    DriverList[i]->setCapacity(editCapacity);
+                    cout << "VEHICLE CAPACITY UPDATED FOR DRIVER" << endl;
+                }
+            }
+            DriverExists = false;
+
+        }
+        else if(EditChoice == 5){
+            bool editHandicapStatus;
+            bool editHandicapStatusLoopError;
+            string editHandicap;
+            cout << "EDIT HANDICAP CAPABLE STATUS" << endl;
+            do{
+                cout << "Enter Handicap Capable Status 'Yes' if capable or 'No' if not capable (without quotes)" << endl;
+                cin >> editHandicap;
+                if(editHandicap == "Yes" || editHandicap == "yes"){
+                    editHandicapStatus = true;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                            if(DriverList[i]->getID() == EditID){
+                                DriverList[i]->setHandicapped(editHandicapStatus);
+                                cout << "HANDICAP CAPABILITY UPDATED" << endl;
+                            }
+                    }
+                    editHandicapStatusLoopError = false;
+                }
+                else if(editHandicap == "No" || editHandicap == "no"){
+                    editHandicapStatus = false;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                            if(DriverList[i]->getID() == EditID){
+                                DriverList[i]->setHandicapped(editHandicapStatus);
+                                cout << "HANDICAP CAPABILITY UPDATED" << endl;
+                            }
+                    }
+                    editHandicapStatusLoopError = false;
+
+                }
+                else{
+                    cout << "ERROR INVALID CHOICE" << endl;
+                    editHandicapStatusLoopError = true;
+                }
+            }while(editHandicapStatusLoopError == true);
+            DriverExists = false;
+        }
+        else if(EditChoice == 6){
+            string editVehicleType;
+            cout << "ENTER NEW VEHICLE TYPE FOR DRIVER" << endl;
+            cin.ignore();
+            getline(cin, editVehicleType);
+            for(int i = 0; i < DriverList.size(); ++i){
+                if(DriverList[i]->getID() == EditID){
+                    DriverList[i]->setVehicleType(editVehicleType);
+                    cout << "VEHICLE TYPE UPDATED FOR DRIVER" << endl;
+                }
+            }
+
+            DriverExists = false;
+        }
+        else if(EditChoice == 7){
+            float editRating;
+            bool editRatingLoopError;
+            do{
+                cout << "ENTER NEW RATING 0 - 5 FOR DRIVER" << endl;
+                cin >> editRating;
+                if(editRating < 0.0 || editRating > 5.0){
+                    cout << "ERROR RATING MUST BE 0 - 5" << endl;
+                    editRatingLoopError = true;
+                }
+                else{
+                    for(int i = 0; i < DriverList.size(); ++i){
+                        if(DriverList[i]->getID() == EditID){
+                            DriverList[i]->setRating(editRating);
+                            cout << "RATING UPDATED FOR DRIVER" << endl;
+                        }
+                    }
+                    editRatingLoopError = false;
+                    DriverExists = false;
+                }
+            }while(editRatingLoopError == true);
+        }
+        else if(EditChoice == 8){
+            string editAvabilityString;
+            bool editAvability;
+            bool editAvabilityLoopError;
+            cout << "EDIT AVABILITY" << endl;
+            do{
+                cout << "Enter If Driver Is Available 'Yes' or 'No' (without quotes)" << endl;
+                cin >> editAvabilityString;
+                if(editAvabilityString == "Yes" || editAvabilityString == "yes"){
+                    editAvability = true;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                        if(DriverList[i]->getID() == EditID){
+                            DriverList[i]->setAvailable(editAvability);
+                            cout << "AVABILITY UPDATED FOR DRIVER" << endl;
+                            editAvabilityLoopError = false;
+                        }
+                    }
+                }
+                else if(editAvabilityString == "No" || editAvabilityString == "no"){
+                    editAvability = false;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                        if(DriverList[i]->getID() == EditID){
+                            DriverList[i]->setAvailable(editAvability);
+                            cout << "AVABILITY UPDATED FOR DRIVER" << endl;
+                            editAvabilityLoopError = false;
+                        }
+                    }
+                }
+                else{
+                    cout << "ERROR INVALID CHOICE" << endl;
+                    editAvabilityLoopError = true;
+                }
+
+            }while(editAvabilityLoopError == true);
+            DriverExists = false;
+        }
+        else if(EditChoice == 9){
+            bool editPetsAllowedStatusLoopError;
+            bool editPetsAllowed;
+            string editPetsAllowedString;
+            cout << "EDIT PETS ALLOWED STATUS" << endl;
+            do{
+                cout << "Enter If Driver Allows Pets 'Yes' or 'No'" << endl;
+                cin >> editPetsAllowedString;
+                if(editPetsAllowedString == "Yes" || editPetsAllowedString == "yes"){
+                    editPetsAllowed = true;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                        if(DriverList[i]->getID() == EditID){
+                            DriverList[i]->setPetsAllowed(editPetsAllowed);
+                            cout << "PETS ALLOWED STATUS UPDATED FOR DRIVER" << endl;
+                            editPetsAllowedStatusLoopError = false;
+                        }
+                    }
+                }
+                else if(editPetsAllowedString == "No" || editPetsAllowedString == "no"){
+                    editPetsAllowed = false;
+                    for(int i = 0; i < DriverList.size(); ++i){
+                        if(DriverList[i]->getID() == EditID){
+                            DriverList[i]->setPetsAllowed(editPetsAllowed);
+                            cout << "PETS ALLOWED STATUS UPDATED FOR DRIVER" << endl;
+                            editPetsAllowedStatusLoopError = false;
+                        }
+                    }        
+                }
+                else{
+                    cout << "ERROR INVALID CHOICE" << endl;
+                    editPetsAllowedStatusLoopError = true;
+                }
+            }while(editPetsAllowedStatusLoopError == true);
+            DriverExists = false;
+        }
+        else if(EditChoice == 10){
+            string editNotes;
+            cout << "EDIT DRIVER NOTES" << endl;
+            cin.ignore();
+            getline(cin, editNotes);
+                for(int i = 0; i < DriverList.size(); ++i){
+                    if(DriverList[i]->getID() == EditID){
+                        DriverList[i]->setNotes(editNotes);
+                        cout << "NOTES UPDATED FOR DRIVER" << endl;
+                    }
+                }   
+            DriverExists = false;
+
+        }
+        else{
+            cout << "ERROR NOT VALID OPTION" << endl;
+
+        }
+
+    }while(DriverExists == true);
 
 }
 
