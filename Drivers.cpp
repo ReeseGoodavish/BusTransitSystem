@@ -618,7 +618,34 @@ void Drivers::editDrivers(){
 
 }
 
+void Drivers::deleteDriver(){
+    
+    if(DriverList.empty()){
+        cout << "DRIVER LIST IS EMPTY" << endl;
+    }
+    else{
+        int DeleteID;
+        bool deleteDriverLoopError;
+        do{
+            cout << "ENTER ID OF DRIVER TO DELETE" << endl;
+            cin >> DeleteID;
+                for(int i = 0; i < DriverList.size(); ++i){
+                    deleteDriverLoopError = false;
+                    if(DriverList[i]->getID() == DeleteID){
+                        DriverList.erase(DriverList.begin() + i);
+                        cout << "Driver Deleted" << endl;
+                    }
+                    else{
+                        cout << "DRIVER NOT FOUND" << endl;
+                        deleteDriverLoopError = true;
+                    }
+                }
+        }while(deleteDriverLoopError == true);
+    }
+}
+
 void Drivers::searchAndFindDriver(){
+
     if(DriverList.empty()){
         cout << "DRIVER LIST IS EMPTY" << endl;
     }

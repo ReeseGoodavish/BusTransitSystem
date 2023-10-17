@@ -20,6 +20,7 @@ void DriverMenu(){
     cout << "PICK AN OPTION" << endl;
     cout << "a - Add Driver" << endl;
     cout << "e - Edit Driver" << endl;
+    cout << "d - Delete Driver" << endl;
     cout << "p - Print All Drivers" << endl;
     cout << "s - Search and Find Driver" << endl;
     cout << "q - Quit Driver Menu" << endl;
@@ -35,6 +36,10 @@ void ExecuteDriverMenu(Drivers& driver, char driveroption){
         case 'e':
             cout << "Edit" << endl;
             driver.editDrivers();
+            break;
+        case 'd':
+            cout << "Delete" << endl;
+            driver.deleteDriver();
             break;
         case 'p':
             cout << "Print All Drivers" << endl;
