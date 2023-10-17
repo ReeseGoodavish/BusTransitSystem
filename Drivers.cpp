@@ -618,6 +618,57 @@ void Drivers::editDrivers(){
 
 }
 
+void Drivers::searchAndFindDriver(){
+    if(DriverList.empty()){
+        cout << "DRIVER LIST IS EMPTY" << endl;
+    }
+    else{
+        int findID;
+        bool findDriverLoopError;
+        do{
+        cout << "ENTER ID OF DRIVER TO FIND" << endl;
+        cin >> findID;
+            for(int i = 0; i < DriverList.size(); ++i){
+                findDriverLoopError = false;
+                if(DriverList[i]->getID() == findID){
+                    cout << "DRIVER FOUND" << endl;
+                    cout << "DRIVER INFO:" << endl;
+                    cout << "DRIVER FIRST NAME : " << DriverList[i]->getFirstName() << endl;
+                    cout << "DRIVER LAST NAME: " << DriverList[i]->getLastName() << endl;
+                    cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
+                    if(DriverList[i]->getHandicapped() == 1){
+                        cout << "Handicap Capable: Driver is Handicap Capable " << endl;
+                    }
+                    else if(DriverList[i]->getHandicapped() == 0){
+                        cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
+                    }
+                    cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
+                    cout << "Rating: " << DriverList[i]->getRating() << endl;
+                    if(DriverList[i]->getAvailable() == 1){
+                        cout << "Available: Driver is Available" << endl;
+                    }
+                    else if(DriverList[i]->getAvailable() == 0){
+                        cout << "Available: Driver is not Available" << endl;
+                    }
+
+                    if(DriverList[i]->getPetsAllowed() == 1){
+                            cout << "Pets Allowed: Driver allows Pets" << endl;
+                    }
+                    else if(DriverList[i]->getPetsAllowed() == 0){
+                        cout << "Pets Allowed: Driver does not allow Pets" << endl;
+                    }
+
+                    cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
+                }
+                else{
+                    cout << "DRIVER NOT FOUND" << endl;
+                    findDriverLoopError = true;
+                }
+            }
+        }while(findDriverLoopError == true);
+    }
+}
+
 //PRINT ALL DRIVERS
 void Drivers::printAllDrivers(){
 

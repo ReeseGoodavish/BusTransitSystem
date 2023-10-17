@@ -59,6 +59,7 @@ class Drivers{
 
         void addDriver();
         void editDrivers();
+        void searchAndFindDriver();
         void printAllDrivers();
 
     private:
