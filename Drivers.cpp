@@ -307,108 +307,61 @@ void editDriversMenu(){
 
 // EDIT DRIVER FUNCTION
 void Drivers::editDrivers(){
-    int EditDriverID;
-    bool DriverIDError; // set to true
 
-    if(DriverList.empty()){
-        cout << "DRIVER LIST IS EMPTY" << endl;
-    }
-    else{
-        do{
-        cout << "ENTER ID OF DRIVER TO EDIT" << endl;
-        cin >> EditDriverID;
-    
-        for(int i=0; i < DriverList.size(); ++i){
-            if(EditDriverID == DriverList[i]->getID()){
-                cout << "DRIVER FOUND" << endl;
-                cout << "INFO FOR DRIVER" << endl;
-                cout << "Driver ID: " << DriverList[i]->getID() << endl;
-                cout << "First Name: " << DriverList[i]->getFirstName() << endl;
-                cout << "Last Name: " << DriverList[i]->getLastName() << endl;
-                cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
-                if(DriverList[i]->getHandicapped() == 1){
-                    cout << "Handicap Capable: Driver is Handicap Capable" << endl;
-                }
-                else if(DriverList[i]->getHandicapped() == 0){
-                    cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
-                }
+    int EditID;
+    int MenuChoice;
+    bool IDLoopError = true;
+    do{
+    cout << "ENTER ID OF DRIVER TO EDIT" << endl;
+    cin >> EditID;
 
-                cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
-                cout << "Rating: " << DriverList[i]->getRating() << endl;
-
-                if(DriverList[i]->getAvailable() == 1){
-                    cout << "Available: Driver is Available" << endl;
-                }
-                else if(DriverList[i]->getAvailable() == 0){
-                    cout << "Available: Driver is not Available" << endl;
-                }
-
-                if(DriverList[i]->getPetsAllowed() == 1){
-                    cout << "Pets Allowed: Driver allows Pets" << endl;
-                }
-                else if(DriverList[i]->getPetsAllowed() == 0){
-                    cout << "Pets Allowed: Driver does not allow Pets" << endl;
-                }
-
-                cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
-                }
-                
-
-                editDriversMenu();
-                int EditChoice;
-                cin >> EditChoice;
-                
-                switch(EditChoice){
-                    case 1:
-                        string newID;
-                        bool newIDLoopError;
-                        do{
-                            cout << "Enter ID of 6 digits" << endl;
-                            cin >> newID;
+    for(int i = 0; i < DriverList.size(); ++i){
+        if(DriverList[i]->getID() == EditID){
+            cout << "DRIVER FOUND" << endl;
+            // INFO FOR DRIVER
+            editDriversMenu();
+            cin >> MenuChoice;
+                if(MenuChoice == 1){
+                    string newID;
+                    bool newIDLoopError;
+                    do{
+                        cout << "Enter ID of 6 Digits " << endl;
+                        cin >> newID;
+                        
+                        if(newID.size() != 6){
+                            cout << "Error ID Must Be 6 Digits Long" << endl;
                             newIDLoopError = false;
-
-                            if(newID.size() != 6){
-                                cout << "ID must be 6 digits Long" << endl;
-                                newIDLoopError = true;
-                            }
-                            else if(newID[0] == '0'){
-                                cout << "First Digit cant be a zero " << endl;
-                                newIDLoopError = true;
-                            }
-                            else{
-                                for(char c: newID){
-                                    if(!isdigit(c)){
-                                        cout << "ID must be only integers" << endl;
-                                        newIDLoopError = true;
-                                        break;
-                                    }
+                        }
+                        else if(newID[0] == 'o'){
+                            cout << "First Digit Can Not Be Zero" << endl;
+                            newIDLoopError = false;
+                        }
+                        if(newIDLoopError == true){
+                            for(char c: newID){
+                                if(!isdigit(c)){
+                                    cout << "ID Must Only Be Integers" << endl;
+                                    newIDLoopError = false;
+                                    break;
                                 }
                             }
-                            
-                            int EditnewID = stoi(newID);
-                            
-                            if(newIDLoopError == false){
-                                for(int i = 0; i < DriverList.size(); ++i){
-                                    if(DriverList[i]->getID() == EditnewID){
-                                        cout << "ERROR DRIVER ID EXISTS";
-                                        newIDLoopError = true;
-                                    }
-                                }
-                            }
-                            
+                        }
 
-                        }while(newIDLoopError);
-                        break;
-
+                    }while(newIDLoopError == false);
                 }
-
-                DriverIDError = false;
-            }
-            if(DriverIDError == true){
-                cout << "DRIVER WAS NOT FOUND" << endl;
-            }
-        }while(DriverIDError = true);
+                else{
+                    cout << "NOT VALID CHOICE ENTER AGAIN" << endl;
+                    IDLoopError = true;
+                    break;
+                }
+            IDLoopError = false;
+            break;
+        }
+        else{
+            cout << "Driver Not Found" << endl;
+        }
     }
+    }while(IDLoopError == true);
+
 }
 
 //PRINT ALL DRIVERS

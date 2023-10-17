@@ -1,11 +1,17 @@
-run: Drivers.o Hwk3Main.o
-	g++ Drivers.o Hwk3Main.o -o run
+CXX = g++
+CXXFLAGS = -std=c++11  # You can adjust the C++ standard as needed
 
-Drivers.o: Drivers.cpp
-	g++ -c Drivers.cpp
+SRCS = Drivers.cpp Hwk3Main.cpp
+OBJS = $(SRCS:.cpp=.o)
+EXECUTABLE = run
 
-Hwk3Main.o: Hwk3Main.cpp
-	g++ -c Hwk3Main.cpp
+all: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJS)
+	$(CXX) $(OBJS) -o $@
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm *.o run
+	rm -f $(OBJS) $(EXECUTABLE)
