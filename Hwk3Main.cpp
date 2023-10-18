@@ -3,8 +3,9 @@
 using namespace std;
 
 #include "Drivers.h"
+#include "Driver.h"
+#include "Passengers.h"
 
-Drivers input;
 
 void PrintMenu(){
 
@@ -17,55 +18,82 @@ void PrintMenu(){
 }
 
 void DriverMenu(){
-    cout << "PICK AN OPTION" << endl;
+    cout << "DRIVER MENU" << endl;
     cout << "a - Add Driver" << endl;
     cout << "e - Edit Driver" << endl;
     cout << "d - Delete Driver" << endl;
     cout << "p - Print All Drivers" << endl;
     cout << "s - Search and Find Driver" << endl;
     cout << "q - Quit Driver Menu" << endl;
+    cout << "PICK AN OPTION" << endl;
+}
+
+void PassengerMenu(){
+    cout << "PASSENGER MENU" << endl;
+    cout << "a - Add Passenger" << endl;
+    cout << "p - Print All Passengers" << endl;
+    cout << "q - Quit Passenger Menu" << endl;
+    cout << "PICK AN OPTION" << endl;
 }
 
 void ExecuteDriverMenu(Drivers& driver, char driveroption){
 
     switch(driveroption){
         case 'a':
-            cout << "add" << endl;
             driver.addDriver();
             break;
         case 'e':
-            cout << "Edit" << endl;
             driver.editDrivers();
             break;
         case 'd':
-            cout << "Delete" << endl;
             driver.deleteDriver();
             break;
         case 'p':
-            cout << "Print All Drivers" << endl;
             driver.printAllDrivers();
             break;
         case 's':
-            cout << "Search/Find Driver" << endl;
             driver.searchAndFindDriver();
             break;
         case 'q':
             break;
         default:
+            cout << endl;
             cout << "Error Invalid Input" << endl;
+            cout << endl;
+    }
+}
+
+void ExecutePassengerMenu(Passengers& passenger, char passengeroption){
+
+    switch(passengeroption){
+        case 'a':
+            passenger.addPassenger();
+            break;
+        case 'p':
+            passenger.printAllPassengers();
+            break;
+        case 'q':
+            break;
+        default:
+            cout << endl;
+            cout << "Error Invalid Input" << endl;
+            cout << endl;
 
     }
 }
 
-void ExecuteMenu(Drivers& driver, char option){
+void ExecuteMenu(Passengers& passenger, Drivers& driver, char option){
 
     char driveroption;
+    char passengeroption;
 
     switch(option){
         case 'd':
             do{
+            cout << endl;
             DriverMenu();
             cin >> driveroption;
+            cout << endl;
                 if(driveroption != 'q'){
                     ExecuteDriverMenu(driver, driveroption);
                 }
@@ -75,7 +103,15 @@ void ExecuteMenu(Drivers& driver, char option){
             break;
 
         case 'p':
-            cout << "Passenger" << endl;
+            do{
+            cout << endl;
+            PassengerMenu();
+            cin >> passengeroption;
+            cout << endl;
+                if(passengeroption != 'q'){
+                    ExecutePassengerMenu(passenger, passengeroption);
+                }
+            }while(passengeroption != 'q');
             break;
 
         case 'r':
@@ -83,7 +119,9 @@ void ExecuteMenu(Drivers& driver, char option){
             break;
 
         default:
+            cout << endl;
             cout << "Error Invalid Input " << endl;
+            cout << endl;
             break;
     }
 
@@ -101,13 +139,14 @@ int main()
 
     char option;
     Drivers driver;
-
+    Passengers passenger;
+    
     do{
     PrintMenu();
     cin >> option;
 
         if(option != 'q'){
-        ExecuteMenu(driver, option);
+        ExecuteMenu(passenger, driver, option);
         }
 
     }while(option != 'q');

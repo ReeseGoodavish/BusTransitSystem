@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11
 
-SRCS = Drivers.cpp Hwk3Main.cpp
+SRCS = Hwk3Main.cpp Drivers.cpp Driver.cpp Passengers.cpp
 OBJS = $(SRCS:.cpp=.o)
 EXECUTABLE = run
 

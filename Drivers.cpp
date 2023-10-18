@@ -3,80 +3,8 @@
 using namespace std;
 
 #include "Drivers.h"
-
-void Driver::setID(int ID){
-    this->ID = ID;
-}
-int Driver::getID(){
-    return ID;
-}
-
-Drivers::Drivers(){
-    count = 100000;
-}
-
-void Driver::setFirstName(string FirstName){
-    this->FirstName = FirstName;
-}
-string Driver::getFirstName(){
-    return FirstName;
-}
-
-void Driver::setLastName(string LastName){
-    this->LastName = LastName;
-}
-string Driver::getLastName(){
-    return LastName;
-}
-
-void Driver::setCapacity(int Capacity){
-    this->Capacity = Capacity;
-}
-int Driver::getCapacity(){
-    return Capacity;
-}
-
-void Driver::setHandicapped(bool Handicapped){
-    this->Handicapped = Handicapped;
-}
-bool Driver::getHandicapped(){
-    return Handicapped;
-}
-
-void Driver::setVehicleType(string VehicleType){
-    this->VehicleType = VehicleType;
-}
-string Driver::getVehicleType(){
-    return VehicleType;
-}
-
-void Driver::setRating(float Rating){
-    this->Rating = Rating;
-}
-float Driver::getRating(){
-    return Rating;
-}
-
-void Driver::setAvailable(bool Available){
-    this->Available = Available;
-}
-bool Driver::getAvailable(){
-    return Available;
-}
-
-void Driver::setPetsAllowed(bool PetsAllowed){
-    this->PetsAllowed = PetsAllowed;
-}
-bool Driver::getPetsAllowed(){
-    return PetsAllowed;
-}
-
-void Driver::setNotes(string Notes){
-    this->Notes = Notes;
-}
-string Driver::getNotes(){
-    return Notes;
-}
+#include "Driver.h"
+#include "Passengers.h"
 
 void Drivers::addDriver(){
     Driver* newDriver = new Driver();
@@ -254,7 +182,7 @@ void Drivers::addDriver(){
     }
 
     cout << "Vehicle Type: " << newDriver->getVehicleType() << endl;
-    cout << "Rating: " << newDriver->getRating() << endl;
+    cout << "Rating: " << newDriver->getRating() << "/5" << endl;
 
     // If-Else Block (better than displaying 0 or 1)
     if(newDriver->getAvailable() == 0){
@@ -683,7 +611,7 @@ void Drivers::searchAndFindDriver(){
                         cout << "Handicap Capable: Driver is Not Handicap Capable" << endl;
                     }
                     cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
-                    cout << "Rating: " << DriverList[i]->getRating() << endl;
+                    cout << "Rating: " << DriverList[i]->getRating() << "/5" << endl;
                     if(DriverList[i]->getAvailable() == 1){
                         cout << "Available: Driver is Available" << endl;
                     }
@@ -732,7 +660,7 @@ void Drivers::printAllDrivers(){
             }
 
             cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
-            cout << "Rating: " << DriverList[i]->getRating() << endl;
+            cout << "Rating: " << DriverList[i]->getRating() << "/5" << endl;
 
             if(DriverList[i]->getAvailable() == 1){
                 cout << "Available: Driver is Available" << endl;
