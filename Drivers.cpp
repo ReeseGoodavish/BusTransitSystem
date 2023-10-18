@@ -311,11 +311,13 @@ void Drivers::editDrivers(){
     int EditID;
     string newID;
     bool DriverExists = false;
+    bool enterIDLoopError = true;
 
     do{
         if(DriverList.empty()){
             cout << "DRIVER LIST IS EMPTY " << endl;
-            DriverExists = true;
+            enterIDLoopError = false;
+            DriverExists = false;
         }
         else{
             do{
@@ -355,22 +357,23 @@ void Drivers::editDrivers(){
 
                         cout << "Driver Notes: " << DriverList[i]->getNotes() << endl;
 
-                        DriverExists = true;
+                        enterIDLoopError = true;
                         break;
                     }
                     else{
                         cout << "DRIVER NOT FOUND" << endl;
-                        DriverExists = false;
+                        enterIDLoopError = false;
                     }
                 }
-            }while(DriverExists == false);
+            }while(enterIDLoopError == false);
+            
         }
-    }while(DriverExists == false);
+    }while(DriverExists == true);
 
 
     int EditChoice;
     bool newIDLoopError = false;
-    do{
+    while(DriverExists == false && enterIDLoopError == true){
         editDriversMenu();
         cin >> EditChoice;
         
@@ -406,7 +409,8 @@ void Drivers::editDrivers(){
                         cout << "DRIVER ID UPDATED" << endl;
                     }
                 }
-                DriverExists = false;
+                DriverExists = true;
+                enterIDLoopError = false;
             }
 
             }while(newIDLoopError == true);
@@ -423,7 +427,8 @@ void Drivers::editDrivers(){
                     cout << "DRIVER FIRST NAME UPDATED" << endl;
                 }
             }
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
         }
         else if(EditChoice == 3){
             string editLastName;
@@ -436,7 +441,8 @@ void Drivers::editDrivers(){
                     cout << "DRIVER LAST NAME UPDATED" << endl;
                 }
             }
-            DriverExists = false;            
+            DriverExists = true;
+            enterIDLoopError = false;            
         }
         else if(EditChoice == 4){
             int editCapacity;
@@ -449,7 +455,8 @@ void Drivers::editDrivers(){
                     cout << "VEHICLE CAPACITY UPDATED FOR DRIVER" << endl;
                 }
             }
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
 
         }
         else if(EditChoice == 5){
@@ -486,7 +493,8 @@ void Drivers::editDrivers(){
                     editHandicapStatusLoopError = true;
                 }
             }while(editHandicapStatusLoopError == true);
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
         }
         else if(EditChoice == 6){
             string editVehicleType;
@@ -500,7 +508,8 @@ void Drivers::editDrivers(){
                 }
             }
 
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
         }
         else if(EditChoice == 7){
             float editRating;
@@ -520,7 +529,8 @@ void Drivers::editDrivers(){
                         }
                     }
                     editRatingLoopError = false;
-                    DriverExists = false;
+                    DriverExists = true;
+                    enterIDLoopError = false;
                 }
             }while(editRatingLoopError == true);
         }
@@ -558,7 +568,8 @@ void Drivers::editDrivers(){
                 }
 
             }while(editAvabilityLoopError == true);
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
         }
         else if(EditChoice == 9){
             bool editPetsAllowedStatusLoopError;
@@ -593,7 +604,8 @@ void Drivers::editDrivers(){
                     editPetsAllowedStatusLoopError = true;
                 }
             }while(editPetsAllowedStatusLoopError == true);
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
         }
         else if(EditChoice == 10){
             string editNotes;
@@ -606,7 +618,8 @@ void Drivers::editDrivers(){
                         cout << "NOTES UPDATED FOR DRIVER" << endl;
                     }
                 }   
-            DriverExists = false;
+            DriverExists = true;
+            enterIDLoopError = false;
 
         }
         else{
@@ -614,7 +627,7 @@ void Drivers::editDrivers(){
 
         }
 
-    }while(DriverExists == true);
+    }
 
 }
 
