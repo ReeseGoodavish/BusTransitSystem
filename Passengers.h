@@ -41,6 +41,7 @@ class Passenger{
 class Passengers{
     public:
         void addPassenger();
+        void editPassenger();
         void printAllPassengers();
 
     private:

@@ -78,32 +78,32 @@ void Passengers::addPassenger(){
 
     bool paymentOptionLoopError;
     do{
-    cout << "Enter Integer For Which Payment New Passenger Uses (1,2,3,4)" << endl;
-    cin >> paymentOption;
-    if(paymentOption == 1){
-        Payment = "Cash";
-        newPassenger->setPayment(Payment);
-        paymentOptionLoopError = false;
-    }
-    else if(paymentOption == 2){
-        Payment = "Debit";
-        newPassenger->setPayment(Payment);
-        paymentOptionLoopError = false;
-    }
-    else if(paymentOption == 3){
-        Payment = "Credit";
-        newPassenger->setPayment(Payment);
-        paymentOptionLoopError = false;
-    }
-    else if(paymentOption == 4){
-        Payment = "Online Transfer";
-        newPassenger->setPayment(Payment);
-        paymentOptionLoopError = false;
-    }
-    else{
-        cout << "ERROR INVALID CHOICE" << endl;
-        paymentOptionLoopError = true;
-    }
+        cout << "Enter Integer For Which Payment New Passenger Uses (1,2,3,4)" << endl;
+        cin >> paymentOption;
+        if(paymentOption == 1){
+            Payment = "Cash";
+            newPassenger->setPayment(Payment);
+            paymentOptionLoopError = false;
+        }
+        else if(paymentOption == 2){
+            Payment = "Debit";
+            newPassenger->setPayment(Payment);
+            paymentOptionLoopError = false;
+        }
+        else if(paymentOption == 3){
+            Payment = "Credit";
+            newPassenger->setPayment(Payment);
+            paymentOptionLoopError = false;
+        }
+        else if(paymentOption == 4){
+            Payment = "Online Transfer";
+            newPassenger->setPayment(Payment);
+            paymentOptionLoopError = false;
+        }
+        else{
+            cout << "ERROR INVALID CHOICE" << endl;
+            paymentOptionLoopError = true;
+        }
     }while(paymentOptionLoopError == true);
 
     bool Handicapped;
@@ -169,7 +169,6 @@ void Passengers::addPassenger(){
 
     PassengerList.push_back(newPassenger);
 
-    cout << endl;
     cout << "INFO FOR NEW PASSENGER" << endl;
     cout << "Passenger ID: " << newPassenger->getID() << endl;
     cout << "Name: " << newPassenger->getName() << endl;
@@ -188,6 +187,111 @@ void Passengers::addPassenger(){
         cout << "Pets Status: Passenger Does Not Have Pets" << endl;
     }
 
+}
+
+void editPassengerMenu(){
+    cout << "EDIT MENU" << endl;
+    cout << "1 - ID" << endl;
+    cout << "2 - Name" << endl;
+    cout << "3 - Payment Method" << endl;
+    cout << "4 - Handicapped Status" << endl;
+    cout << "5 - Rating" << endl;
+    cout << "6 - Has Pets Status" << endl;
+}
+
+void Passengers::editPassenger(){
+
+    int EditID;
+    string newID;
+    bool PassengerExists = false;
+    bool enterIDLoopError = true;
+
+    do{
+        if(PassengerList.empty()){
+            cout << "PASSENGER LIST IS EMPTY" << endl;
+            enterIDLoopError = false;
+            PassengerExists = false;
+        }
+        else{
+            do{
+                cout << "ENTER ID OF PASSENGER TO EDIT" << endl;
+                cin >> EditID;
+                for(int i = 0; i < PassengerList.size(); ++i){
+                    if(PassengerList[i]->getID() == EditID){
+                        cout << "PASSENGER FOUND" << endl;
+                        cout << "INFO FOR PASSENGER" << endl;
+                        cout << "Passenger ID: " << PassengerList[i]->getID() << endl;
+                        cout << "Passenger Name: " << PassengerList[i]->getName() << endl;
+                        cout << "Passenger Payment Method: " << PassengerList[i]->getPayment() << endl;
+                            if(PassengerList[i]->getHandicapped() == 1){
+                                cout << "Passenger Handicapped Status: Passenger Is Handicapped" << endl;
+                            }
+                            else if(PassengerList[i]->getHandicapped() == 0){
+                                cout << "Passenger Handicapped Status: Passenger Is Not Handicapped" << endl;
+                            }
+                        cout << "Passenger Rating: " << PassengerList[i]->getRating() << "/5" << endl;
+                            if(PassengerList[i]->getHasPets() == 1){
+                                cout << "Passenger Pet Status: Passenger Has Pets" << endl;
+                            }
+                            else if(PassengerList[i]->getHasPets() == 0){
+                                cout << "Passenger Pet Status: Passenger Does Not Have Pets" << endl;
+                            }  
+                        enterIDLoopError = true;
+                        break;                          
+                    }
+                    else{
+                        cout << "PASSENGER NOT FOUND" << endl;
+                        enterIDLoopError = false;
+                    }
+                }
+            }while(enterIDLoopError == false);
+        }
+    }while(PassengerExists == true);
+
+    int EditChoice;
+    bool newIDLoopError = false;
+    while(PassengerExists == false && enterIDLoopError == true){
+        editPassengerMenu();
+        cin >> EditChoice;
+
+        if(EditChoice ==1){
+            do{
+                cout << "Enter ID of 6 Digits" << endl;
+                cin >> newID;
+                newIDLoopError = false;
+
+                if(newID.size() != 6){
+                    cout << "ID MUST BE 6 DIGITS LONG" << endl;
+                    newIDLoopError = true;
+                }
+                else if(newID[0] == '0'){
+                    cout << "FIRST DIGIT CANT EQUAL ZERO" << endl;
+                    newIDLoopError = true;
+                }
+                else if(newIDLoopError == false){
+                    for(char c: newID){
+                        if(!isdigit(c)){
+                            cout << "ID MUST BE ONLY INTEGERS" << endl;
+                            newIDLoopError = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(!newIDLoopError){
+                for(int i = 0; i < PassengerList.size(); ++i){
+                    if(PassengerList[i]->getID() == EditID){
+                        int EditnewID = stoi(newID);
+                        PassengerList[i]->setID(EditnewID);
+                        cout << "DRIVER ID UPDATED" << endl;
+                    }
+                }
+                PassengerExists = true;
+                enterIDLoopError = false;                    
+                }
+            }while(newIDLoopError == true);
+        }
+    }
 }
 
 void Passengers::printAllPassengers(){

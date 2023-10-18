@@ -267,7 +267,7 @@ void Drivers::editDrivers(){
                         }
 
                         cout << "Vehicle Type: " << DriverList[i]->getVehicleType() << endl;
-                        cout << "Rating: " << DriverList[i]->getRating() << endl;
+                        cout << "Rating: " << DriverList[i]->getRating() << "/5" <<endl;
 
                         if(DriverList[i]->getAvailable() == 1){
                             cout << "Available: Driver is Available" << endl;
