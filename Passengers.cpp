@@ -311,68 +311,103 @@ void Passengers::editPassenger(){
             int editPaymentChoice;
             bool PaymentOptionLoopError;
             string editPayment;
-        do{
-                cout << "ENTER NEW PAYMENT FOR PASSENGER" << endl;
-                cout << "PAYMENT OPTIONS" << endl;
-                cout << "1 - Cash" << endl;
-                cout << "2 - Debit" << endl;
-                cout << "3 - Credit" << endl;
-                cout << "4 - Online Transfer" << endl;
-                cin >>editPaymentChoice;
-            if(editPaymentChoice == 1){
-                PassengerExists = true;
-                enterIDLoopError = false;
-                PaymentOptionLoopError = false;
-                editPayment = "Cash";
-                for(int i = 0; i < PassengerList.size(); ++i){
-                    if(PassengerList[i]->getID() == EditID){
-                        PassengerList[i]->setPayment(editPayment);
+            do{
+                    cout << "ENTER NEW PAYMENT FOR PASSENGER" << endl;
+                    cout << "PAYMENT OPTIONS" << endl;
+                    cout << "1 - Cash" << endl;
+                    cout << "2 - Debit" << endl;
+                    cout << "3 - Credit" << endl;
+                    cout << "4 - Online Transfer" << endl;
+                    cin >>editPaymentChoice;
+                if(editPaymentChoice == 1){
+                    PassengerExists = true;
+                    enterIDLoopError = false;
+                    PaymentOptionLoopError = false;
+                    editPayment = "Cash";
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setPayment(editPayment);
+                        }
                     }
                 }
-            }
-            else if(editPaymentChoice == 2){
-                PassengerExists = true;
-                enterIDLoopError = false;
-                PaymentOptionLoopError = false;
-                editPayment = "Debit";
-                for(int i = 0; i < PassengerList.size(); ++i){
-                    if(PassengerList[i]->getID() == EditID){
-                        PassengerList[i]->setPayment(editPayment);
+                else if(editPaymentChoice == 2){
+                    PassengerExists = true;
+                    enterIDLoopError = false;
+                    PaymentOptionLoopError = false;
+                    editPayment = "Debit";
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setPayment(editPayment);
+                        }
                     }
                 }
-            }
-            else if(editPaymentChoice == 3){
-                PassengerExists = true;
-                enterIDLoopError = false;
-                PaymentOptionLoopError = false;
-                editPayment = "Credit";
-                for(int i = 0; i < PassengerList.size(); ++i){
-                    if(PassengerList[i]->getID() == EditID){
-                        PassengerList[i]->setPayment(editPayment);
+                else if(editPaymentChoice == 3){
+                    PassengerExists = true;
+                    enterIDLoopError = false;
+                    PaymentOptionLoopError = false;
+                    editPayment = "Credit";
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setPayment(editPayment);
+                        }
                     }
                 }
-            }
-            else if(editPaymentChoice == 4){
-                PassengerExists = true;
-                enterIDLoopError = false;
-                PaymentOptionLoopError = false;
-                editPayment = "Online Transfer";
-                for(int i = 0; i < PassengerList.size(); ++i){
-                    if(PassengerList[i]->getID() == EditID){
-                        PassengerList[i]->setPayment(editPayment);
+                else if(editPaymentChoice == 4){
+                    PassengerExists = true;
+                    enterIDLoopError = false;
+                    PaymentOptionLoopError = false;
+                    editPayment = "Online Transfer";
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setPayment(editPayment);
+                        }
                     }
                 }
-            }
-            else{
-                cout << "ERROR INVALID CHOICE " << endl;
-                PaymentOptionLoopError = true;
+                else{
+                    cout << "ERROR INVALID CHOICE " << endl;
+                    PaymentOptionLoopError = true;
 
-            }
+                }
 
-        }while(PaymentOptionLoopError == true);
-
+            }while(PaymentOptionLoopError == true);
         }
-        
+        else if(EditChoice == 4){
+            string editHandicapStatusString;
+            bool editHandicapStatus;
+            bool editHandicapStatusLoopError;
+            cout << "EDIT PASSENGER HANDICAP STATUS" << endl;
+            do{
+                cout << "Enter Handicapped Status: 'Yes' If Handicapped 'No' If Not Handicapped (without quotes)" << endl;
+                cin >> editHandicapStatusString;
+                if(editHandicapStatusString == "Yes" || editHandicapStatusString == "yes"){
+                    PassengerExists = true;
+                    enterIDLoopError = false; 
+                    editHandicapStatus = true;
+                    editHandicapStatusLoopError = false;
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setHandicapped(editHandicapStatus);
+                        }
+                    }
+                }
+                else if(editHandicapStatusString == "No" || editHandicapStatusString == "no"){
+                    PassengerExists = true;
+                    enterIDLoopError = false; 
+                    editHandicapStatus = false;
+                    editHandicapStatusLoopError = false;
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setHandicapped(editHandicapStatus);
+                        }
+                    }
+                }
+                else{
+                    cout << "ERROR INVALID CHOICE " << endl;
+                    editHandicapStatusLoopError = true;
+                }
+            }while(editHandicapStatusLoopError == true);
+
+        } 
     }
 }
 
