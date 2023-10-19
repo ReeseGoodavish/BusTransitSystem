@@ -407,7 +407,31 @@ void Passengers::editPassenger(){
                 }
             }while(editHandicapStatusLoopError == true);
 
-        } 
+        }
+        else if(EditChoice == 5){
+            float editRating;
+            bool editRatingLoopError;
+            cout << "EDIT PASSENGER RATING" << endl;
+
+            do{
+                cout << "Enter New Rating For Passenger 0 - 5" << endl;
+                cin >> editRating;
+                if(editRating < 0 || editRating > 5){
+                    cout << "ERROR ONLY ENTER RATING 0 - 5" << endl;
+                    editRatingLoopError = true;
+                }
+                else{
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        PassengerExists = true;
+                        enterIDLoopError = false; 
+                        editRatingLoopError = false;
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setRating(editRating);
+                        }
+                    }
+                }
+            }while(editRatingLoopError == true);
+        }
     }
 }
 
