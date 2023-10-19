@@ -31,6 +31,7 @@ void DriverMenu(){
 void PassengerMenu(){
     cout << "PASSENGER MENU" << endl;
     cout << "a - Add Passenger" << endl;
+    cout << "e - Edit Passenger" << endl;
     cout << "p - Print All Passengers" << endl;
     cout << "q - Quit Passenger Menu" << endl;
     cout << "PICK AN OPTION" << endl;
@@ -71,6 +72,9 @@ void ExecutePassengerMenu(Passengers& passenger, char passengeroption){
             break;
         case 'p':
             passenger.printAllPassengers();
+            break;
+        case 'e':
+            passenger.editPassenger();
             break;
         case 'q':
             break;
@@ -150,7 +154,6 @@ int main()
         }
 
     }while(option != 'q');
-
 
     return 0;
 }

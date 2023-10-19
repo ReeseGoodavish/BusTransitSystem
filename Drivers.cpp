@@ -7,7 +7,7 @@ using namespace std;
 #include "Passengers.h"
 
 void Drivers::addDriver(){
-    Driver* newDriver = new Driver();
+    Driver* newDriver = new Driver(); // Anytime add Driver is called new Driver(); is made
 
     static int ID = 100000;
     newDriver->setID(ID);
@@ -44,21 +44,21 @@ void Drivers::addDriver(){
     string inputHandicapped;
 
     do{
-    cout << "Is New Driver Handicapped Capable 'Yes' or 'No' (without quotes) " << endl;
-    cin >> inputHandicapped;
+        cout << "Is New Driver Handicapped Capable 'Yes' or 'No' (without quotes) " << endl;
+        cin >> inputHandicapped;
 
-    if(inputHandicapped == "Yes" || inputHandicapped == "yes"){
-        Handicapped = true;
-        HandicappedLoopError = false;
-    }
-    else if(inputHandicapped == "No" || inputHandicapped == "no"){
-        Handicapped = false;
-        HandicappedLoopError = false;
-    }
-    else{
-        cout << "Error Please Enter Again" << endl;
-        HandicappedLoopError = true;
-    }
+        if(inputHandicapped == "Yes" || inputHandicapped == "yes"){
+            Handicapped = true;
+            HandicappedLoopError = false;
+        }
+        else if(inputHandicapped == "No" || inputHandicapped == "no"){
+            Handicapped = false;
+            HandicappedLoopError = false;
+        }
+        else{
+            cout << "Error Please Enter Again" << endl;
+            HandicappedLoopError = true;
+        }
     }while(HandicappedLoopError == true);
     newDriver->setHandicapped(Handicapped);
 
@@ -91,21 +91,21 @@ void Drivers::addDriver(){
     string inputAvailable;
 
     do{
-    cout << "Enter If New Driver Is Available Or Not 'Yes' or 'No' (without quotes) " << endl;
-    cin >> inputAvailable;
+        cout << "Enter If New Driver Is Available Or Not 'Yes' or 'No' (without quotes) " << endl;
+        cin >> inputAvailable;
 
-    if(inputAvailable == "Yes" || inputAvailable == "yes"){
-        Available = true;
-        AvailableLoopError = false;
-    }
-    else if(inputAvailable == "No" || inputAvailable == "no"){
-        Available = false;
-        AvailableLoopError = false;
-    }
-    else{
-        cout << "Error Please Enter Again" << endl;
-        AvailableLoopError = true;
-    }
+        if(inputAvailable == "Yes" || inputAvailable == "yes"){
+            Available = true;
+            AvailableLoopError = false;
+        }
+        else if(inputAvailable == "No" || inputAvailable == "no"){
+            Available = false;
+            AvailableLoopError = false;
+        }
+        else{
+            cout << "Error Please Enter Again" << endl;
+            AvailableLoopError = true;
+        }
     }while(AvailableLoopError == true);
     newDriver->setAvailable(Available);
 
@@ -117,21 +117,21 @@ void Drivers::addDriver(){
     string inputPetsAllowed;
 
     do{
-    cout << "Enter If New Driver Allows Pets 'Yes' or 'No' (without quotes) " << endl;
-    cin >> inputPetsAllowed;
+        cout << "Enter If New Driver Allows Pets 'Yes' or 'No' (without quotes) " << endl;
+        cin >> inputPetsAllowed;
 
-    if(inputPetsAllowed == "Yes" || inputPetsAllowed == "yes"){
-        PetsAllowed = true;
-        PetsAllowedLoopError = false;
-    }
-    else if(inputPetsAllowed == "No" || inputPetsAllowed == "no"){
-        PetsAllowed = false;
-        PetsAllowedLoopError = false;
-    }
-    else{
-        cout << "Error Please Enter Again" << endl;
-        PetsAllowedLoopError = true;
-    }
+        if(inputPetsAllowed == "Yes" || inputPetsAllowed == "yes"){
+            PetsAllowed = true;
+            PetsAllowedLoopError = false;
+        }
+        else if(inputPetsAllowed == "No" || inputPetsAllowed == "no"){
+            PetsAllowed = false;
+            PetsAllowedLoopError = false;
+        }
+        else{
+            cout << "Error Please Enter Again" << endl;
+            PetsAllowedLoopError = true;
+        }
     }while(PetsAllowedLoopError == true);
     newDriver->setPetsAllowed(PetsAllowed);
     // correctly displays if pets allowed for new driver 0 = false, 1 = true
@@ -144,20 +144,19 @@ void Drivers::addDriver(){
     cin >> NotesChoice;
 
     do{
-    if(NotesChoice == "Yes" || NotesChoice == "yes"){
-        cin.ignore();
-        getline(cin, Notes);
-        NotesLoopError = false;
-    }
-    else if(NotesChoice == "No" || NotesChoice == "no"){
-        cout << "No Notes Added For Driver" << endl;
-        Notes = "No Notes For Driver";
-        NotesLoopError = false;
-    }
-    else{
-        cout << "Error Please Enter Again" << endl;
-        NotesLoopError = true;
-    }
+        if(NotesChoice == "Yes" || NotesChoice == "yes"){
+            cin.ignore();
+            getline(cin, Notes);
+            NotesLoopError = false;
+        }
+        else if(NotesChoice == "No" || NotesChoice == "no"){
+            Notes = "No Notes For Driver";
+            NotesLoopError = false;
+        }
+        else{
+            cout << "Error Please Enter Again" << endl;
+            NotesLoopError = true;
+        }
     }while(NotesLoopError == true);
     newDriver->setNotes(Notes);
 
@@ -165,7 +164,7 @@ void Drivers::addDriver(){
     // cout << newDriver->getNotes() << endl;
 
     DriverList.push_back(newDriver); //pushes all info for new driver into vector
-
+    
     //Print All Info For New Drievr
     cout << "New Driver ID: " << newDriver->getID() << endl;
     cout << "New Driver Info: " << endl;
@@ -201,18 +200,7 @@ void Drivers::addDriver(){
     }
 
     cout << "Driver Notes: " << newDriver->getNotes() << endl;
-
-
-    /*
-    for(int i = 0; i < DriverList.size(); ++i){
-        cout << "New Driver Info: " << endl;
-        cout << "First Name: " << DriverList[i]->getFirstName() << endl;
-    }
-
-    for(int i = 0; i < DriverList.size(); ++i){
-        delete DriverList[i];
-    }
-    */
+    
 
 }
 
