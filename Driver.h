@@ -8,6 +8,7 @@ using namespace std;
 #include "Drivers.h"
 #include "Driver.h"
 #include "Passengers.h"
+#include "Passenger.h"
 
 class Driver{
     public:
