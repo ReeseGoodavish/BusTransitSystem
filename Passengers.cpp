@@ -471,6 +471,10 @@ void Passengers::editPassenger(){
     }
 }
 
+void Passengers::deletePassenger(){
+    
+}
+
 void Passengers::printAllPassengers(){
 
     if(!PassengerList.empty()){

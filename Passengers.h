@@ -43,6 +43,7 @@ class Passengers{
         void addPassenger();
         void editPassenger();
         void printAllPassengers();
+        void deletePassenger();
 
     private:
         int count;

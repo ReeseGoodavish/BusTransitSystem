@@ -32,6 +32,7 @@ void PassengerMenu(){
     cout << "PASSENGER MENU" << endl;
     cout << "a - Add Passenger" << endl;
     cout << "e - Edit Passenger" << endl;
+    cout << "d - Delete Passenger" << endl;
     cout << "p - Print All Passengers" << endl;
     cout << "q - Quit Passenger Menu" << endl;
     cout << "PICK AN OPTION" << endl;
@@ -70,11 +71,14 @@ void ExecutePassengerMenu(Passengers& passenger, char passengeroption){
         case 'a':
             passenger.addPassenger();
             break;
-        case 'p':
-            passenger.printAllPassengers();
-            break;
         case 'e':
             passenger.editPassenger();
+            break;
+        case 'd':
+            passenger.deletePassenger();
+            break;
+        case 'p':
+            passenger.printAllPassengers();
             break;
         case 'q':
             break;
