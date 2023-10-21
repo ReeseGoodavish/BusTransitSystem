@@ -486,6 +486,7 @@ void Passengers::deletePassenger(){
                         PassengerList.erase(PassengerList.begin() + i);
                         cout << "Passenger Deleted" << endl;
                         deletePassengerLoopError = false;
+                        break;
                     }
                     else{
                         cout << "PASSENGER NOT FOUND" << endl;
@@ -493,6 +494,49 @@ void Passengers::deletePassenger(){
                     }
                 }
         }while(deletePassengerLoopError == true);
+    }
+}
+
+void Passengers::searchAndFindPassenger(){
+    if(PassengerList.empty()){
+        cout << "PASSENGER LIST EMPTY" << endl;
+    }
+    else{
+        int findID;
+        bool findPassengerLoopError;
+        do{
+            cout << "ENTER ID OF PASSENGER TO FIND " << endl;
+            cin >> findID;
+            for(int i = 0; i < PassengerList.size(); ++i){
+                findPassengerLoopError = false;
+                if(PassengerList[i]->getID() == findID){
+                    cout << "PASSENGER FOUND" << endl;
+                    cout << "PASSENGER INFO:" << endl;
+                    cout << "ID: " << PassengerList[i]->getID() << endl;
+                    cout << "NAME: " << PassengerList[i]->getName() << endl;
+                    cout << "PAYMENT METHOD: " << PassengerList[i]->getPayment() << endl;
+                    if(PassengerList[i]->getHandicapped() == 1){
+                        cout << "HANDICAPPED STATUS: Passenger Is Handicapped" << endl;
+                    }
+                    else if(PassengerList[i]->getHandicapped() == 0){
+                        cout << "HANDICAPPED STATUS: Passenger Is Not Handicapped" << endl;
+                    }
+
+                    cout << "RATING: " << PassengerList[i]->getRating() << "/5" << endl;
+
+                    if(PassengerList[i]->getHasPets() == 1){
+                        cout << "PET STATUS: Passenger Has Pets" << endl;
+                    }
+                    else if(PassengerList[i]->getHasPets() == 0){
+                        cout << "PET STATUS: Passenger Does Not Have Pets" << endl;
+                    }
+                }
+                else{
+                    cout << "PASSENGER NOT FOUND" << endl;
+                    findPassengerLoopError = true;
+                }
+            }
+        }while(findPassengerLoopError == true);
     }
 }
 

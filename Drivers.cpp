@@ -589,8 +589,9 @@ void Drivers::searchAndFindDriver(){
                 if(DriverList[i]->getID() == findID){
                     cout << "DRIVER FOUND" << endl;
                     cout << "DRIVER INFO:" << endl;
-                    cout << "DRIVER FIRST NAME : " << DriverList[i]->getFirstName() << endl;
-                    cout << "DRIVER LAST NAME: " << DriverList[i]->getLastName() << endl;
+                    cout << "ID: " << DriverList[i]->getID() << endl;
+                    cout << "FIRST NAME : " << DriverList[i]->getFirstName() << endl;
+                    cout << "LAST NAME: " << DriverList[i]->getLastName() << endl;
                     cout << "Capacity: " << DriverList[i]->getCapacity() << endl;
                     if(DriverList[i]->getHandicapped() == 1){
                         cout << "Handicap Capable: Driver is Handicap Capable " << endl;

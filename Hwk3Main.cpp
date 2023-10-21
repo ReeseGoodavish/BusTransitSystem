@@ -34,6 +34,7 @@ void PassengerMenu(){
     cout << "e - Edit Passenger" << endl;
     cout << "d - Delete Passenger" << endl;
     cout << "p - Print All Passengers" << endl;
+    cout << "s - Search and Find Driver" << endl;
     cout << "q - Quit Passenger Menu" << endl;
     cout << "PICK AN OPTION" << endl;
 }
@@ -79,6 +80,9 @@ void ExecutePassengerMenu(Passengers& passenger, char passengeroption){
             break;
         case 'p':
             passenger.printAllPassengers();
+            break;
+        case 's':
+            passenger.searchAndFindPassenger();
             break;
         case 'q':
             break;

@@ -42,8 +42,9 @@ class Passengers{
     public:
         void addPassenger();
         void editPassenger();
-        void printAllPassengers();
         void deletePassenger();
+        void searchAndFindPassenger();
+        void printAllPassengers();
 
     private:
         int count;
