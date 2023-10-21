@@ -472,7 +472,28 @@ void Passengers::editPassenger(){
 }
 
 void Passengers::deletePassenger(){
-    
+    if(PassengerList.empty()){
+        cout << "PASSENGER LIST IS EMPTY" << endl;
+    }
+    else{
+        int DeleteID;
+        bool deletePassengerLoopError;
+        do{
+            cout << "ENTER ID FOR PASSENGER TO DELETE" << endl;
+            cin >> DeleteID;
+                for(int i = 0; i < PassengerList.size(); ++i){
+                    if(DeleteID == PassengerList[i]->getID()){
+                        PassengerList.erase(PassengerList.begin() + i);
+                        cout << "Passenger Deleted" << endl;
+                        deletePassengerLoopError = false;
+                    }
+                    else{
+                        cout << "PASSENGER NOT FOUND" << endl;
+                        deletePassengerLoopError = true;
+                    }
+                }
+        }while(deletePassengerLoopError == true);
+    }
 }
 
 void Passengers::printAllPassengers(){
