@@ -432,6 +432,42 @@ void Passengers::editPassenger(){
                 }
             }while(editRatingLoopError == true);
         }
+        else if(EditChoice ==6){
+            string editHasPetsString;;
+            bool editHasPetsStatus;
+            bool editHasPetsLoopError;
+            cout << "EDIT PASSENGER PET STATUS" << endl;
+            do{
+                cout << "Enter Passenger Pet Status: 'Yes' If Passenger Has Pets 'No' If Passenger Does Not Have Pets (without quotes)" << endl;
+                cin >> editHasPetsString;
+                if(editHasPetsString == "Yes" || editHasPetsString == "yes"){
+                    PassengerExists = true;
+                    enterIDLoopError = false; 
+                    editHasPetsStatus = true;
+                    editHasPetsLoopError = false;
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setHasPets(editHasPetsStatus);
+                        }
+                    }
+                }
+                else if(editHasPetsString == "No" || editHasPetsString == "no"){
+                    PassengerExists = true;
+                    enterIDLoopError = false; 
+                    editHasPetsStatus = false;
+                    editHasPetsLoopError = false;
+                    for(int i = 0; i < PassengerList.size(); ++i){
+                        if(PassengerList[i]->getID() == EditID){
+                            PassengerList[i]->setHasPets(editHasPetsStatus);
+                        }
+                    }
+                }
+                else{
+                    cout << "ERROR INVALID CHOICE " << endl;
+                    editHasPetsLoopError = true;
+                }
+            }while(editHasPetsLoopError == true);    
+        }
     }
 }
 

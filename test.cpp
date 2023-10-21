@@ -25,9 +25,11 @@ class number{
 
 int main(){
 
+vector<number*> intlist;
+
+for(int i = 0; i < 2; ++i){
     number* mynumbers = new number;
 
-    vector<number*> intlist;
 
     int x;
     int y;
@@ -42,6 +44,13 @@ int main(){
     cout << "Y = " << mynumbers->gety() << endl;
 
     intlist.push_back(mynumbers);
+}
+
+    for(int i = 0; i < intlist.size(); ++i){
+        cout << "x = " << intlist[i]->getx() << endl;
+        cout << "y = " << intlist[i]->gety() << endl;
+        delete intlist[i];
+    }
 
 
 }
