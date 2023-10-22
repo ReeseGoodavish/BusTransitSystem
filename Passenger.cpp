@@ -5,6 +5,8 @@ using namespace std;
 #include "Drivers.h"
 #include "Driver.h"
 #include "Passengers.h"
+#include "Rides.h"
+
 
 //GETTERS AND SETTERS
 void Passenger::setID(int ID){

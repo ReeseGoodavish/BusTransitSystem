@@ -5,7 +5,7 @@ using namespace std;
 #include "Drivers.h"
 #include "Driver.h"
 #include "Passengers.h"
-#include "Passenger.h"
+#include "Rides.h"
 
 
 void PrintMenu(){
@@ -38,6 +38,14 @@ void PassengerMenu(){
     cout << "s - Search and Find Driver" << endl;
     cout << "q - Quit Passenger Menu" << endl;
     cout << "PICK AN OPTION" << endl;
+}
+
+void RideMenu(){
+    cout << "RIDE MENU" << endl;
+    cout << "a - Add Ride" << endl;
+    cout << "e - Edit Ride" << endl;
+    cout << "p - Print All Rides" << endl;
+    cout << "q - Quit Ride Menu" << endl;
 }
 
 void ExecuteDriverMenu(Drivers& driver, char driveroption){
@@ -95,10 +103,32 @@ void ExecutePassengerMenu(Passengers& passenger, char passengeroption){
     }
 }
 
-void ExecuteMenu(Passengers& passenger, Drivers& driver, char option){
+void ExecuteRideMenu(Rides& ride, char rideoption){
+
+    switch(rideoption){
+        case 'a':
+            ride.addRide();
+            break;
+        case 'e':
+            ride.editRide();
+            break;
+        case 'p':
+            ride.PrintAllRides();
+            break;
+        case 'q':
+            break;
+        default:
+            cout << endl;
+            cout << "Error Invalid Input" << endl;
+            cout << endl;
+    }
+}
+
+void ExecuteMenu(Rides& ride, Passengers& passenger, Drivers& driver, char option){
 
     char driveroption;
     char passengeroption;
+    char rideoption;
 
     switch(option){
         case 'd':
@@ -128,7 +158,14 @@ void ExecuteMenu(Passengers& passenger, Drivers& driver, char option){
             break;
 
         case 'r':
-            cout << "Rider" << endl;
+            do{
+            cout << endl;
+            RideMenu();
+            cin >> rideoption;
+                if(rideoption != 'q'){
+                    ExecuteRideMenu(ride, rideoption);
+                }
+            }while(rideoption != 'q');
             break;
 
         default:
@@ -153,13 +190,14 @@ int main()
     char option;
     Drivers driver;
     Passengers passenger;
+    Rides ride;
     
     do{
     PrintMenu();
     cin >> option;
 
         if(option != 'q'){
-        ExecuteMenu(passenger, driver, option);
+        ExecuteMenu(ride, passenger, driver, option);
         }
 
     }while(option != 'q');

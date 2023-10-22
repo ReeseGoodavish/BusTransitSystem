@@ -6,6 +6,8 @@ using namespace std;
 #include "Driver.h"
 #include "Passengers.h"
 #include "Passenger.h"
+#include "Rides.h"
+
 
 void Driver::setID(int ID){
     this->ID = ID;

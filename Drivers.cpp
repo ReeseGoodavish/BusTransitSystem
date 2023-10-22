@@ -6,6 +6,8 @@ using namespace std;
 #include "Driver.h"
 #include "Passengers.h"
 #include "Passenger.h"
+#include "Rides.h"
+
 
 void Drivers::addDriver(){
     Driver* newDriver = new Driver(); // Anytime add Driver is called new Driver(); is made
