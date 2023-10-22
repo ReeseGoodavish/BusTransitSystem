@@ -41,6 +41,7 @@ class Rides{
         void addRide();
         void editRide();
         void deleteRide();
+        void searchAndFindRide();
         void printAllRides();
 
     private:

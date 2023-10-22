@@ -237,7 +237,7 @@ void Rides::editRide(){
             getline(cin,editDropOffLocation);
             for(int i = 0; i < RideList.size(); ++i){
                 if(RideList[i]->getID() == EditID){
-                    RideList[i]->setPickUpLocation(editDropOffLocation);
+                    RideList[i]->setDropOffLocation(editDropOffLocation);
                 }
             }
             RideExists = true;
@@ -345,6 +345,44 @@ void Rides::deleteRide(){
             }
         }while(deleteRideLoopError == true);
         
+    }
+}
+
+void Rides::searchAndFindRide(){
+    if(RideList.empty()){
+        cout << "RIDE LIST EMPTY" << endl;
+    }
+    else{
+        int findID;
+        bool findRideLoopError;
+        do{
+            cout << "ENTER ID OF RIDE TO FIND" << endl;
+            cin >> findID;
+            for(int i = 0; i < RideList.size(); ++i){
+                for(int i = 0; i < RideList.size(); ++i){
+                    if(RideList[i]->getID() == findID){
+                        findRideLoopError = false;
+                        cout << "RIDE FOUND" << endl;
+                        cout << "RIDE INFO" << endl;
+                        cout << "ID: " << RideList[i]->getID() << endl;
+                        cout << "PICK UP LOCATION: " << RideList[i]->getPickUpLocation() << endl;
+                        cout << "DROP OFF LOCATION: " << RideList[i]->getDropOffLocation() << endl;
+                        cout << "PARTY SIZE: " << RideList[i]->getPartySize() << endl;
+                        if(RideList[i]->getIncludesPets() == 1){
+                            cout << "PET STATUS: Ride Includes Pets" << endl; 
+                        }
+                        else if(RideList[i]->getIncludesPets() == 0){
+                            cout << "PET STATUS: Ride Does Not Include Pets" << endl;
+                        }
+                        cout << "RATING: " << RideList[i]->getRatingByCustomer() << "/5" << endl;
+                    }
+                }
+                if(findRideLoopError == true){
+                    cout << "RIDE NOT FOUND" << endl;
+                    findRideLoopError = true;
+                }
+            }
+        }while(findRideLoopError == true);
     }
 }
 
