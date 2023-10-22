@@ -40,7 +40,8 @@ class Rides{
     public:
         void addRide();
         void editRide();
-        void PrintAllRides();
+        void deleteRide();
+        void printAllRides();
 
     private:
         int count;

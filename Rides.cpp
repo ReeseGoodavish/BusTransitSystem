@@ -321,7 +321,11 @@ void Rides::editRide(){
     }
 }
 
-void Rides::PrintAllRides(){
+void Rides::deleteRide(){
+
+}
+
+void Rides::printAllRides(){
     for(int i = 0; i < RideList.size(); ++i){
         cout << "INFO FOR RIDE " << i + 1 << ": " << endl;
         cout << "RIDE ID: " << RideList[i]->getID() << endl;

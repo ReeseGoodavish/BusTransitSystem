@@ -44,6 +44,7 @@ void RideMenu(){
     cout << "RIDE MENU" << endl;
     cout << "a - Add Ride" << endl;
     cout << "e - Edit Ride" << endl;
+    cout << "d - Delete Ride" << endl;
     cout << "p - Print All Rides" << endl;
     cout << "q - Quit Ride Menu" << endl;
 }
@@ -112,8 +113,11 @@ void ExecuteRideMenu(Rides& ride, char rideoption){
         case 'e':
             ride.editRide();
             break;
+        case 'd':
+            ride.deleteRide();
+            break;
         case 'p':
-            ride.PrintAllRides();
+            ride.printAllRides();
             break;
         case 'q':
             break;
