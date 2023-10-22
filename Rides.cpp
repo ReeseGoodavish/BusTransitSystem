@@ -322,23 +322,34 @@ void Rides::editRide(){
 }
 
 void Rides::deleteRide(){
-
+    int deleteID;
+    if(RideList.empty()){
+        cout << "RIDE LIST EMPTY" << endl;
+    }
+    else{
+    cout << "ENTER ID FOR RIDE TO DELETE" << endl;
+    }
 }
 
 void Rides::printAllRides(){
-    for(int i = 0; i < RideList.size(); ++i){
-        cout << "INFO FOR RIDE " << i + 1 << ": " << endl;
-        cout << "RIDE ID: " << RideList[i]->getID() << endl;
-        cout << "Pick Up Location: " << RideList[i]->getPickUpLocation() << endl;
-        cout << "Drop Off Location: " << RideList[i]->getDropOffLocation() << endl;
-        cout << "Party Size: " << RideList[i]->getPartySize() << endl;
-        if(RideList[i]->getIncludesPets() == 1){
-            cout << "Pet Status: Ride Has Pets" << endl;
+    if(RideList.empty()){
+        cout << "RIDE LIST EMPTY" << endl;
+    }
+    else{
+        for(int i = 0; i < RideList.size(); ++i){
+            cout << "INFO FOR RIDE " << i + 1 << ": " << endl;
+            cout << "RIDE ID: " << RideList[i]->getID() << endl;
+            cout << "Pick Up Location: " << RideList[i]->getPickUpLocation() << endl;
+            cout << "Drop Off Location: " << RideList[i]->getDropOffLocation() << endl;
+            cout << "Party Size: " << RideList[i]->getPartySize() << endl;
+            if(RideList[i]->getIncludesPets() == 1){
+                cout << "Pet Status: Ride Has Pets" << endl;
+            }
+            else if(RideList[i]->getIncludesPets() == 0){
+                cout << "Pet Status: Ride Does Not Have Pets" << endl;
+            }
+            cout << "Rating By Customer " << RideList[i]->getRatingByCustomer() << endl;
         }
-        else if(RideList[i]->getIncludesPets() == 0){
-            cout << "Pet Status: Ride Does Not Have Pets" << endl;
-        }
-        cout << "Rating By Customer " << RideList[i]->getRatingByCustomer() << endl;
     }
 }
 
