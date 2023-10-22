@@ -207,6 +207,7 @@ void Drivers::addDriver(){
 
 }
 
+// Function for drivers edit menu
 void editDriversMenu(){
 
     cout << "EDIT MENU: " << endl;
@@ -233,17 +234,19 @@ void Drivers::editDrivers(){
     bool enterIDLoopError = true;
 
     do{
+        //Checks if the DriverList is empty
         if(DriverList.empty()){
             cout << "DRIVER LIST IS EMPTY " << endl;
             enterIDLoopError = false;
             DriverExists = false;
         }
-        else{
+        else{ // If driver list is not empty
             do{
                 cout << "ENTER ID OF DRIVER TO EDIT" << endl; 
                 cin >> EditID;
                 for(int i = 0; i < DriverList.size(); ++i){
                     if(DriverList[i]->getID() == EditID){
+                        //PRINTS ALL INFO FOR DRIVER IF THEY ARE FOUND
                         cout << "DRIVER FOUND" << endl;
                         cout << "INFO FOR DRIVER" << endl;
                         cout << "Driver ID: " << DriverList[i]->getID() << endl;
@@ -297,6 +300,7 @@ void Drivers::editDrivers(){
         cin >> EditChoice;
         
         if(EditChoice == 1){
+            //VERIFIES IF NEW ID CAN BE ACCEPTED
             do{
             cout << "Enter ID of 6 Digits " << endl;
             cin >> newID;
@@ -631,10 +635,11 @@ void Drivers::searchAndFindDriver(){
 
 //PRINT ALL DRIVERS
 void Drivers::printAllDrivers(){
-
+    // Check if collection of drivers is empty
     if(DriverList.empty()){
-        cout << "DRIVER LIST IS EMPTY" << endl;
+        cout << "DRIVER LIST IS EMPTY" << endl; //If collection of drivers is empty:
     }
+    // Print all details and values for each driver in the collection to the user
     else{
         for(int i = 0; i < DriverList.size(); ++i){
             cout << "ALL DRIVER INFO" << endl;
