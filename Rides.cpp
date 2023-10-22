@@ -322,12 +322,29 @@ void Rides::editRide(){
 }
 
 void Rides::deleteRide(){
-    int deleteID;
     if(RideList.empty()){
         cout << "RIDE LIST EMPTY" << endl;
     }
     else{
-    cout << "ENTER ID FOR RIDE TO DELETE" << endl;
+        int deleteID;
+        bool deleteRideLoopError;
+        do{
+        cout << "ENTER ID FOR RIDE TO DELETE" << endl;
+        cin >> deleteID;
+            for(int i = 0; i < RideList.size(); ++i){
+                if(deleteID == RideList[i]->getID()){
+                    RideList.erase(RideList.begin() + i);
+                    cout << "Passenger Deleted" << endl;
+                    deleteRideLoopError = false;
+                    break;
+                }
+                else{
+                    cout << "RIDE NOT FOUND" << endl;
+                    deleteRideLoopError = true;
+                }
+            }
+        }while(deleteRideLoopError == true);
+        
     }
 }
 
