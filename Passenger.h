@@ -10,34 +10,41 @@ using namespace std;
 #include "Passengers.h"
 
 
-class Passenger{
-    public:
-        void setID(int ID);
-        int getID();
+class Passenger {
+public:
+    // Public member functions for the Passenger class
 
-        void setName(string Name);
-        string getName();
+    // Setter and getter for the passenger's ID
+    void setID(int ID);       // Set the passenger's ID
+    int getID();              // Get the passenger's ID
 
-        void setPayment(string Payment);
-        string getPayment();
+    // Setter and getter for the passenger's name
+    void setName(string Name);   // Set the passenger's name
+    string getName();           // Get the passenger's name
 
-        void setHandicapped(bool Handicapped);
-        bool getHandicapped();
+    // Setter and getter for the passenger's payment information
+    void setPayment(string Payment);   // Set the payment information for the passenger
+    string getPayment();             // Get the payment information
 
-        void setRating(float Rating);
-        float getRating();
+    // Setter and getter for the passenger's handicapped status
+    void setHandicapped(bool Handicapped);  // Set whether the passenger is handicapped
+    bool getHandicapped();                 // Get the handicapped status of the passenger
 
-        void setHasPets(bool HasPets);
-        bool getHasPets();
+    // Setter and getter for the passenger's rating
+    void setRating(float Rating);    // Set the passenger's rating
+    float getRating();               // Get the passenger's rating
 
-    private:
-        string Name;
-        int ID;
-        string Payment;
-        bool Handicapped;
-        float Rating;
-        bool HasPets;
+    // Setter and getter for whether the passenger has pets
+    void setHasPets(bool HasPets);   // Set whether the passenger has pets
+    bool getHasPets();              // Get whether the passenger has pets
 
+private:
+    string Name;       // Private member variable to store the passenger's name
+    int ID;            // Private member variable to store the passenger's ID
+    string Payment;   // Private member variable to store payment information
+    bool Handicapped; // Private member variable to store the handicapped status
+    float Rating;     // Private member variable to store the passenger's rating
+    bool HasPets;     // Private member variable to indicate whether the passenger has pets
 };
 
 #endif

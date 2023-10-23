@@ -10,17 +10,28 @@ using namespace std;
 #include "Passenger.h"
 
 
-class Passengers{
-    public:
-        void addPassenger();
-        void editPassenger();
-        void deletePassenger();
-        void searchAndFindPassenger();
-        void printAllPassengers();
+class Passengers {
+public:
+    // Public member functions for the Passengers class
 
-    private:
-        int count;
-        vector<Passenger*> PassengerList;
+    // Function to add a new passenger
+    void addPassenger();
+
+    // Function to edit passenger information
+    void editPassenger();
+
+    // Function to delete a passenger
+    void deletePassenger();
+
+    // Function to search and find a passenger
+    void searchAndFindPassenger();
+
+    // Function to print information of all passengers
+    void printAllPassengers();
+
+private:
+    int count;                      // A variable to keep track of the number of passengers
+    vector<Passenger*> PassengerList;  // A vector to store pointers to Passenger objects
 };
 
 #endif

@@ -8,7 +8,7 @@ using namespace std;
 #include "Passenger.h"
 #include "Rides.h"
 
-
+// GETTERS AND SETTERS FOR DRIVER CLASS
 void Driver::setID(int ID){
     this->ID = ID;
 }
@@ -78,3 +78,4 @@ void Driver::setNotes(string Notes){
 string Driver::getNotes(){
     return Notes;
 }
+// GETTERS AND SETTERS FOR DRIVERS CLASS

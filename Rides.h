@@ -9,16 +9,26 @@ using namespace std;
 #include "Passenger.h"
 #include "Ride.h"
 
-class Rides{
-    public:
-        void addRide();
-        void editRide();
-        void deleteRide();
-        void searchAndFindRide();
-        void printAllRides();
+class Rides {
+public:
+    // Public member functions for the Rides class
 
-    private:
-        int count;
-        vector<Ride*> RideList;
+    // Function to add a new ride
+    void addRide();
 
+    // Function to edit ride information
+    void editRide();
+
+    // Function to delete a ride
+    void deleteRide();
+
+    // Function to search and find a ride
+    void searchAndFindRide();
+
+    // Function to print information of all rides
+    void printAllRides();
+
+private:
+    int count; // A variable to keep track of the number of rides
+    vector<Ride*> RideList;// A vector to store pointers to Ride objects
 };

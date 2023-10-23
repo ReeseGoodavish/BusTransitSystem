@@ -13,7 +13,7 @@ using namespace std;
 
 void Passengers::addPassenger(){
 
-    Passenger* newPassenger = new Passenger();
+    Passenger* newPassenger = new Passenger(); //creates a new passenger anytime addpassenger is called
 
     static int count = 100000;
     cout << endl;
@@ -126,7 +126,7 @@ void Passengers::addPassenger(){
         }
     }while(HasPetsLoopError == true);
 
-    PassengerList.push_back(newPassenger);
+    PassengerList.push_back(newPassenger); // POPULATES VECTOR WITH NEW PASSENGER INFO
 
     cout << "INFO FOR NEW PASSENGER" << endl;
     cout << "Passenger ID: " << newPassenger->getID() << endl;
@@ -430,103 +430,110 @@ void Passengers::editPassenger(){
     }
 }
 
-void Passengers::deletePassenger(){
-    if(PassengerList.empty()){
+void Passengers::deletePassenger() {
+    if (PassengerList.empty()) {
         cout << "PASSENGER LIST IS EMPTY" << endl;
-    }
-    else{
+    } else {
         int DeleteID;
         bool deletePassengerLoopError;
-        do{
-            cout << "ENTER ID FOR PASSENGER TO DELETE" << endl;
+
+        do {
+            cout << "ENTER ID FOR PASSENGER TO DELETE: ";
             cin >> DeleteID;
-                for(int i = 0; i < PassengerList.size(); ++i){
-                    if(DeleteID == PassengerList[i]->getID()){
-                        PassengerList.erase(PassengerList.begin() + i);
-                        cout << "Passenger Deleted" << endl;
-                        deletePassengerLoopError = false;
-                        break;
-                    }
-                    else{
-                        cout << "PASSENGER NOT FOUND" << endl;
-                        deletePassengerLoopError = true;
-                    }
+
+            for (int i = 0; i < PassengerList.size(); ++i) {
+                if (DeleteID == PassengerList[i]->getID()) {
+                    // Delete the passenger by erasing the element from the PassengerList
+                    PassengerList.erase(PassengerList.begin() + i);
+                    cout << "Passenger Deleted" << endl;
+                    deletePassengerLoopError = false;
+                    break; // Exit the loop after successfully deleting the passenger
+                } else {
+                    cout << "PASSENGER NOT FOUND" << endl;
+                    deletePassengerLoopError = true;
                 }
-        }while(deletePassengerLoopError == true);
+            }
+        } while (deletePassengerLoopError); // Repeat until the passenger is found and deleted
     }
 }
 
-void Passengers::searchAndFindPassenger(){
-    if(PassengerList.empty()){
-        cout << "PASSENGER LIST EMPTY" << endl;
-    }
-    else{
+void Passengers::searchAndFindPassenger() {
+    if (PassengerList.empty()) {
+        cout << "PASSENGER LIST IS EMPTY" << endl;
+    } else {
         int findID;
         bool findPassengerLoopError;
-        do{
-            cout << "ENTER ID OF PASSENGER TO FIND " << endl;
+        
+        do {
+            cout << "ENTER ID OF PASSENGER TO FIND: ";
             cin >> findID;
-            for(int i = 0; i < PassengerList.size(); ++i){
-                findPassengerLoopError = false;
-                if(PassengerList[i]->getID() == findID){
+            
+            for (int i = 0; i < PassengerList.size(); ++i) {
+                findPassengerLoopError = true; // Initialize the error flag to true
+
+                if (PassengerList[i]->getID() == findID) {
+                    // Passenger with the specified ID is found
+                    findPassengerLoopError = false; // Set the error flag to false
+
                     cout << "PASSENGER FOUND" << endl;
                     cout << "PASSENGER INFO:" << endl;
                     cout << "ID: " << PassengerList[i]->getID() << endl;
                     cout << "NAME: " << PassengerList[i]->getName() << endl;
                     cout << "PAYMENT METHOD: " << PassengerList[i]->getPayment() << endl;
-                    if(PassengerList[i]->getHandicapped() == 1){
+
+                    if (PassengerList[i]->getHandicapped() == 1) {
                         cout << "HANDICAPPED STATUS: Passenger Is Handicapped" << endl;
-                    }
-                    else if(PassengerList[i]->getHandicapped() == 0){
+                    } else {
                         cout << "HANDICAPPED STATUS: Passenger Is Not Handicapped" << endl;
                     }
 
                     cout << "RATING: " << PassengerList[i]->getRating() << "/5" << endl;
 
-                    if(PassengerList[i]->getHasPets() == 1){
+                    if (PassengerList[i]->getHasPets() == 1) {
                         cout << "PET STATUS: Passenger Has Pets" << endl;
-                    }
-                    else if(PassengerList[i]->getHasPets() == 0){
+                    } else {
                         cout << "PET STATUS: Passenger Does Not Have Pets" << endl;
                     }
                 }
-                else{
-                    cout << "PASSENGER NOT FOUND" << endl;
-                    findPassengerLoopError = true;
-                }
             }
-        }while(findPassengerLoopError == true);
+
+            if (findPassengerLoopError) {
+                cout << "PASSENGER NOT FOUND" << endl;
+            }
+        } while (findPassengerLoopError); // Repeat until the passenger is found
     }
 }
 
-void Passengers::printAllPassengers(){
-
-    if(!PassengerList.empty()){
+void Passengers::printAllPassengers() {
+    if (!PassengerList.empty()) { // Check if the PassengerList is not empty
         cout << "LIST OF ALL PASSENGERS" << endl;
-        for(int i = 0; i < PassengerList.size(); ++i){
+
+        // Loop through the PassengerList to print information about each passenger
+        for (int i = 0; i < PassengerList.size(); ++i) {
             cout << "Info For Passenger " << i + 1 << ":" << endl;
             cout << "Passenger ID: " << PassengerList[i]->getID() << endl;
             cout << "Name: " << PassengerList[i]->getName() << endl;
             cout << "Payment Method: " << PassengerList[i]->getPayment() << endl;
-            if(PassengerList[i]->getHandicapped() == 1){
-                cout << "Handicapped Status: Driver Is HandiCapped" << endl;
+
+            // Check if the passenger is handicapped and display the appropriate status
+            if (PassengerList[i]->getHandicapped() == 1) {
+                cout << "Handicapped Status: Passenger Is Handicapped" << endl;
+            } else if (PassengerList[i]->getHandicapped() == 0) {
+                cout << "Handicapped Status: Passenger Is Not Handicapped" << endl;
             }
-            else if(PassengerList[i]->getHandicapped() == 0){
-                cout << "Handicapped Status: Driver Is Not HandiCapped" << endl;
-            }
+
             cout << "Passenger Rating: " << PassengerList[i]->getRating() << "/5" << endl;
-            if(PassengerList[i]->getHasPets() == 1){
+
+            // Check if the passenger has pets and display the appropriate status
+            if (PassengerList[i]->getHasPets() == 1) {
                 cout << "Pets Status: Passenger Has Pets" << endl;
-            }
-            else if(PassengerList[i]->getHasPets() == 0){
+            } else if (PassengerList[i]->getHasPets() == 0) {
                 cout << "Pets Status: Passenger Does Not Have Pets" << endl;
             }
             cout << endl;
         }
+    } else {
+        cout << "ERROR: PASSENGER LIST IS EMPTY" << endl;
     }
-    else{
-        cout << "ERROR PASSENGER LIST EMPTY TEST" << endl;
-    }
-
 }
 

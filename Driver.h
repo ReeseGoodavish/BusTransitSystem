@@ -11,50 +11,62 @@ using namespace std;
 #include "Passenger.h"
 
 
-class Driver{
-    public:
-        void setID(int ID);
+class Driver {
+public:
+    // Public member functions for the Driver class
 
-        int getID();
+    // Setter and getter for the driver's ID
+    void setID(int ID);       // Set the driver's ID
+    int getID();              // Get the driver's ID
 
-        void setFirstName(string FirstName);
-        string getFirstName();
+    // Setter and getter for the driver's first name
+    void setFirstName(string FirstName);   // Set the driver's first name
+    string getFirstName();                 // Get the driver's first name
 
-        void setLastName(string LastName);
-        string getLastName();
+    // Setter and getter for the driver's last name
+    void setLastName(string LastName);     // Set the driver's last name
+    string getLastName();                 // Get the driver's last name
 
-        void setCapacity(int Capacity);
-        int getCapacity();
+    // Setter and getter for the driver's capacity (e.g., number of passengers)
+    void setCapacity(int Capacity);        // Set the driver's capacity
+    int getCapacity();                     // Get the driver's capacity
 
-        void setHandicapped(bool Handicapped);
-        bool getHandicapped();
+    // Setter and getter for the driver's handicapped status
+    void setHandicapped(bool Handicapped);  // Set whether the driver can accommodate handicapped passengers
+    bool getHandicapped();                 // Get the driver's handicapped status
 
-        void setVehicleType(string VehicleType);
-        string getVehicleType();
+    // Setter and getter for the driver's vehicle type
+    void setVehicleType(string VehicleType);  // Set the type of vehicle the driver uses
+    string getVehicleType();                 // Get the driver's vehicle type
 
-        void setRating(float Rating);
-        float getRating();
+    // Setter and getter for the driver's rating
+    void setRating(float Rating);        // Set the driver's rating
+    float getRating();                   // Get the driver's rating
 
-        void setAvailable(bool Available);
-        bool getAvailable();
+    // Setter and getter for the driver's availability status
+    void setAvailable(bool Available);   // Set whether the driver is available
+    bool getAvailable();                // Get the driver's availability status
 
-        void setPetsAllowed(bool PetsAllowed);
-        bool getPetsAllowed();
+    // Setter and getter for the driver's policy on pets
+    void setPetsAllowed(bool PetsAllowed);  // Set whether the driver allows pets
+    bool getPetsAllowed();                 // Get the driver's pet policy
 
-        void setNotes(string Notes);
-        string getNotes();
+    // Setter and getter for any additional notes about the driver
+    void setNotes(string Notes);     // Set additional notes about the driver
+    string getNotes();               // Get any additional notes about the driver
 
-    private:
-        int ID;
-        string FirstName;
-        string LastName;
-        int Capacity;
-        bool Handicapped;
-        string VehicleType;
-        float Rating;
-        bool Available;
-        bool PetsAllowed;
-        string Notes;
+private:
+    // Private member variables to store driver information
+    int ID;
+    string FirstName;
+    string LastName;
+    int Capacity;
+    bool Handicapped;
+    string VehicleType;
+    float Rating;
+    bool Available;
+    bool PetsAllowed;
+    string Notes;
 };
 
 #endif

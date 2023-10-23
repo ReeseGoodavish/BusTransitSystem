@@ -13,33 +13,34 @@ using namespace std;
 
 void Rides::addRide(){
     
-    Ride* newRide = new Ride;
+    Ride* newRide = new Ride; //CREATES RIDE POINTER NAMED NEW RIDE (anytime function is called)
 
-    static int count = 100000;
+    static int count = 100000; //static allows count to always be updated even when function is called again
     cout << endl;
     cout << "NEW RIDE ID SET TO " << count << endl;
-    newRide->setID(count);
+    newRide->setID(count); // sets ID 
     ++count;
 
     string PickUpLocation;
     cout << "Enter Ride Pick Up Location" << endl;
     cin.ignore();
     getline(cin, PickUpLocation);
-    newRide->setPickUpLocation(PickUpLocation);
+    newRide->setPickUpLocation(PickUpLocation); //sets Pickuplocation 
 
     string DropOffLocation;
     cout << "Enter Ride Drop Off Location" << endl;
     getline(cin, DropOffLocation);
-    newRide->setDropOffLocation(DropOffLocation);
+    newRide->setDropOffLocation(DropOffLocation); // sets drop off location
 
     int PartySize;
     do{
     cout << "Enter Ride Party Size" << endl;
     cin >> PartySize;
-    }while(PartySize < 1);
+    }while(PartySize < 1); // Party size cant be less than 1 (need at least 1 person to be transported)
     newRide->setPartySize(PartySize);
 
 
+    //if string = yes or no sets bool to true or false based off user input
     string IncludesPets;
     bool IncludesPetsBool;
     bool IncludesPetsLoopError;
@@ -49,15 +50,15 @@ void Rides::addRide(){
         if(IncludesPets == "yes" || IncludesPets == "Yes"){
             IncludesPetsBool = true;
             IncludesPetsLoopError = false;
-            newRide->setIncludesPets(IncludesPetsBool);
+            newRide->setIncludesPets(IncludesPetsBool); // sets bool to true returns as 1
         }
         else if(IncludesPets == "No" || IncludesPets == "no"){
             IncludesPetsBool = true;
             IncludesPetsLoopError = false;
-            newRide->setIncludesPets(IncludesPetsBool);
+            newRide->setIncludesPets(IncludesPetsBool); // sets bool as false returns as 0
         }
         else{
-            cout << "Error Invalid Input" << endl;
+            cout << "Error Invalid Input" << endl; // if user inputs anything other than yes or no it returns with error
             IncludesPetsBool = false;
         }
 
@@ -66,12 +67,12 @@ void Rides::addRide(){
     do{
         cout << "Enter Rating For Ride 0 - 5" << endl;
         cin >> RatingByCustomer;
-        if(RatingByCustomer < 0 || RatingByCustomer > 5){
+        if(RatingByCustomer < 0 || RatingByCustomer > 5){ // if rating is less than 0 or greater than 5 we get an error
             cout << "Error Only Enter Number 0 - 5 " << endl;
             RatingByCustomerLoopError = true;
         }
         else{
-            newRide->setRatingByCustomer(RatingByCustomer);
+            newRide->setRatingByCustomer(RatingByCustomer); // if not we set rating by customer to input from user 
             RatingByCustomerLoopError = false;
         }
     }while(RatingByCustomerLoopError == true);
@@ -81,6 +82,8 @@ void Rides::addRide(){
     RideList.push_back(newRide);
 }
 
+// Function called when user chooses to edit a Ride
+// Displays options user can pick to edit
 void editRideMenu(){
     cout << "EDIT MENU" << endl;
     cout << "1 - ID" << endl;
@@ -281,89 +284,95 @@ void Rides::editRide(){
     }
 }
 
-void Rides::deleteRide(){
-    if(RideList.empty()){
-        cout << "RIDE LIST EMPTY" << endl;
-    }
-    else{
+void Rides::deleteRide() {
+    if (RideList.empty()) {
+        cout << "RIDE LIST IS EMPTY" << endl;
+    } else {
         int deleteID;
         bool deleteRideLoopError;
-        do{
-        cout << "ENTER ID FOR RIDE TO DELETE" << endl;
-        cin >> deleteID;
-            for(int i = 0; i < RideList.size(); ++i){
-                if(deleteID == RideList[i]->getID()){
+
+        do {
+            cout << "ENTER ID FOR RIDE TO DELETE: ";
+            cin >> deleteID;
+            
+            for (int i = 0; i < RideList.size(); ++i) {
+                if (deleteID == RideList[i]->getID()) {
+                    // Delete the ride by erasing the element from the RideList
                     RideList.erase(RideList.begin() + i);
-                    cout << "Passenger Deleted" << endl;
+                    cout << "Ride Deleted" << endl;
                     deleteRideLoopError = false;
-                    break;
-                }
-                else{
+                    break; // Exit the loop after successfully deleting the ride
+                } else {
                     cout << "RIDE NOT FOUND" << endl;
                     deleteRideLoopError = true;
                 }
             }
-        }while(deleteRideLoopError == true);
-        
+        } while (deleteRideLoopError); // Repeat until the ride is found and deleted
     }
 }
 
-void Rides::searchAndFindRide(){
-    if(RideList.empty()){
-        cout << "RIDE LIST EMPTY" << endl;
-    }
-    else{
+void Rides::searchAndFindRide() {
+    if (RideList.empty()) {
+        cout << "RIDE LIST IS EMPTY" << endl;
+    } else {
         int findID;
         bool findRideLoopError;
-        do{
-            cout << "ENTER ID OF RIDE TO FIND" << endl;
+
+        do {
+            cout << "ENTER ID OF RIDE TO FIND: ";
             cin >> findID;
-            for(int i = 0; i < RideList.size(); ++i){
-                for(int i = 0; i < RideList.size(); ++i){
-                    if(RideList[i]->getID() == findID){
-                        findRideLoopError = false;
-                        cout << "RIDE FOUND" << endl;
-                        cout << "RIDE INFO" << endl;
-                        cout << "ID: " << RideList[i]->getID() << endl;
-                        cout << "PICK UP LOCATION: " << RideList[i]->getPickUpLocation() << endl;
-                        cout << "DROP OFF LOCATION: " << RideList[i]->getDropOffLocation() << endl;
-                        cout << "PARTY SIZE: " << RideList[i]->getPartySize() << endl;
-                        if(RideList[i]->getIncludesPets() == 1){
-                            cout << "PET STATUS: Ride Includes Pets" << endl; 
-                        }
-                        else if(RideList[i]->getIncludesPets() == 0){
-                            cout << "PET STATUS: Ride Does Not Include Pets" << endl;
-                        }
-                        cout << "RATING: " << RideList[i]->getRatingByCustomer() << "/5" << endl;
+            findRideLoopError = true; // Initialize the error flag to true
+
+            for (int i = 0; i < RideList.size(); ++i) {
+                if (RideList[i]->getID() == findID) {
+                    // Ride with the specified ID is found
+                    findRideLoopError = false; // Set the error flag to false
+
+                    cout << "RIDE FOUND" << endl;
+                    cout << "RIDE INFO:" << endl;
+                    cout << "ID: " << RideList[i]->getID() << endl;
+                    cout << "PICK UP LOCATION: " << RideList[i]->getPickUpLocation() << endl;
+                    cout << "DROP OFF LOCATION: " << RideList[i]->getDropOffLocation() << endl;
+                    cout << "PARTY SIZE: " << RideList[i]->getPartySize() << endl;
+
+                    // Check if the ride includes pets and display the appropriate status
+                    if (RideList[i]->getIncludesPets() == 1) {
+                        cout << "PET STATUS: Ride Includes Pets" << endl;
+                    } else {
+                        cout << "PET STATUS: Ride Does Not Include Pets" << endl;
                     }
-                }
-                if(findRideLoopError == true){
-                    cout << "RIDE NOT FOUND" << endl;
-                    findRideLoopError = true;
+
+                    cout << "RATING: " << RideList[i]->getRatingByCustomer() << "/5" << endl;
                 }
             }
-        }while(findRideLoopError == true);
+
+            if (findRideLoopError) {
+                cout << "RIDE NOT FOUND" << endl;
+            }
+        } while (findRideLoopError); // Repeat until the ride is found or user decides to exit
     }
 }
 
-void Rides::printAllRides(){
-    if(RideList.empty()){
-        cout << "RIDE LIST EMPTY" << endl;
-    }
-    else{
-        for(int i = 0; i < RideList.size(); ++i){
+
+void Rides::printAllRides() {
+    if (RideList.empty()) {
+        cout << "RIDE LIST IS EMPTY" << endl;
+    } else {
+        for (int i = 0; i < RideList.size(); ++i) {
             cout << "INFO FOR RIDE " << i + 1 << ": " << endl;
             cout << "RIDE ID: " << RideList[i]->getID() << endl;
             cout << "Pick Up Location: " << RideList[i]->getPickUpLocation() << endl;
             cout << "Drop Off Location: " << RideList[i]->getDropOffLocation() << endl;
             cout << "Party Size: " << RideList[i]->getPartySize() << endl;
-            if(RideList[i]->getIncludesPets() == 1){
+
+            // Check if the ride includes pets and display the appropriate status
+            if (RideList[i]->getIncludesPets() == 1) {
                 cout << "Pet Status: Ride Has Pets" << endl;
-            }
-            else if(RideList[i]->getIncludesPets() == 0){
+            } else {
                 cout << "Pet Status: Ride Does Not Have Pets" << endl;
             }
-            cout << "Rating By Customer " << RideList[i]->getRatingByCustomer() << endl;
+
+            cout << "Rating By Customer: " << RideList[i]->getRatingByCustomer() << endl;
         }
     }
 }

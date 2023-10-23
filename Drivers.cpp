@@ -299,7 +299,7 @@ void Drivers::editDrivers(){
         editDriversMenu();
         cin >> EditChoice;
         
-        if(EditChoice == 1){
+        if(EditChoice == 1){ //WHEN EDIT CHOICE IS EQUAL TO 1
             //VERIFIES IF NEW ID CAN BE ACCEPTED
             do{
             cout << "Enter ID of 6 Digits " << endl;
@@ -339,7 +339,7 @@ void Drivers::editDrivers(){
             }while(newIDLoopError == true);
 
         }
-        else if(EditChoice == 2){
+        else if(EditChoice == 2){ //WHEN EDIT CHOICE IS EQUAL TO 2
             string editFirstName;
             cout << "ENTER NEW FIRST NAME FOR DRIVER" << endl;
             cin >> editFirstName;
@@ -353,7 +353,7 @@ void Drivers::editDrivers(){
             DriverExists = true;
             enterIDLoopError = false;
         }
-        else if(EditChoice == 3){
+        else if(EditChoice == 3){ //WHEN EDIT CHOICE IS EQUAL TO 3
             string editLastName;
             cout << "ENTER NEW LAST NAME FOR DRIVER" << endl;
             cin >> editLastName;
@@ -367,7 +367,7 @@ void Drivers::editDrivers(){
             DriverExists = true;
             enterIDLoopError = false;            
         }
-        else if(EditChoice == 4){
+        else if(EditChoice == 4){ //WHEN EDIT CHOICE IS EQUAL TO 4
             int editCapacity;
             cout << "ENTER NEW VEHICLE CAPACITY FOR DRIVER" << endl;
             cin >> editCapacity;
@@ -382,7 +382,7 @@ void Drivers::editDrivers(){
             enterIDLoopError = false;
 
         }
-        else if(EditChoice == 5){
+        else if(EditChoice == 5){ //WHEN EDIT CHOICE IS EQUAL TO 5
             bool editHandicapStatus;
             bool editHandicapStatusLoopError;
             string editHandicap;
@@ -419,7 +419,7 @@ void Drivers::editDrivers(){
             DriverExists = true;
             enterIDLoopError = false;
         }
-        else if(EditChoice == 6){
+        else if(EditChoice == 6){ //WHEN EDIT CHOICE IS EQUAL TO 6
             string editVehicleType;
             cout << "ENTER NEW VEHICLE TYPE FOR DRIVER" << endl;
             cin.ignore();
@@ -555,7 +555,7 @@ void Drivers::editDrivers(){
 }
 
 void Drivers::deleteDriver(){
-    
+    // checks if driver list is empty
     if(DriverList.empty()){
         cout << "DRIVER LIST IS EMPTY" << endl;
     }
@@ -564,24 +564,25 @@ void Drivers::deleteDriver(){
         bool deleteDriverLoopError;
         do{
             cout << "ENTER ID OF DRIVER TO DELETE" << endl;
-            cin >> DeleteID;
-                for(int i = 0; i < DriverList.size(); ++i){
+            cin >> DeleteID; //asks for new driver to delete
+                for(int i = 0; i < DriverList.size(); ++i){ //loops through driver list
                     deleteDriverLoopError = false;
-                    if(DriverList[i]->getID() == DeleteID){
+                    if(DriverList[i]->getID() == DeleteID){ //finds if loop value is equal to val user wants to find.
                         DriverList.erase(DriverList.begin() + i);
                         cout << "Driver Deleted" << endl;
                     }
                     else{
                         cout << "DRIVER NOT FOUND" << endl;
-                        deleteDriverLoopError = true;
+                        deleteDriverLoopError = true; //error message loop error = true;
                     }
                 }
-        }while(deleteDriverLoopError == true);
+        }while(deleteDriverLoopError == true); //as long as there is a loop error keep going 
     }
 }
 
 void Drivers::searchAndFindDriver(){
 
+    //Checks to see if driver list is empty
     if(DriverList.empty()){
         cout << "DRIVER LIST IS EMPTY" << endl;
     }
@@ -589,11 +590,11 @@ void Drivers::searchAndFindDriver(){
         int findID;
         bool findDriverLoopError;
         do{
-        cout << "ENTER ID OF DRIVER TO FIND" << endl;
+        cout << "ENTER ID OF DRIVER TO FIND" << endl; // gets input for diver list
         cin >> findID;
             for(int i = 0; i < DriverList.size(); ++i){
                 findDriverLoopError = false;
-                if(DriverList[i]->getID() == findID){
+                if(DriverList[i]->getID() == findID){ // checks to see if loop value is equal to value user wants to find
                     cout << "DRIVER FOUND" << endl;
                     cout << "DRIVER INFO:" << endl;
                     cout << "ID: " << DriverList[i]->getID() << endl;

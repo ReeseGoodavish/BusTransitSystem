@@ -8,7 +8,7 @@ using namespace std;
 #include "Rides.h"
 
 
-//GETTERS AND SETTERS
+//GETTERS AND SETTERS FOR PASSENGER CLASS
 void Passenger::setID(int ID){
     this->ID = ID;
 }
@@ -50,4 +50,4 @@ void Passenger::setHasPets(bool HasPets){
 bool Passenger::getHasPets(){
     return HasPets;
 }
-// GETTETS AND SETTERS
+// GETTETS AND SETTERS FOR PASSENGER CLASS

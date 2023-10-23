@@ -10,6 +10,7 @@ using namespace std;
 #include "Passenger.h"
 #include "Rides.h"
 
+// GETTERS AND SETTERS FOR RIDE CLASS
 void Ride::setID(int ID){
     this->ID = ID;
 }
@@ -49,3 +50,4 @@ void Ride::setRatingByCustomer(float RatingByCustomer){
 float Ride::getRatingByCustomer(){
     return RatingByCustomer;
 }
+//GETTERS AND SETTERS FOR RIDE CLASS
